@@ -14,7 +14,7 @@ function AppCard({ category, entry, image, title }) {
         <View style={styles.TitleContainer}>
           <AppText style={styles.cardTitle}>{title}</AppText>
           <AppIcon
-            style={{ height: 20 }}
+            style={{ height: 20, width: 20 }}
             name="dots-horizontal"
             size={30}
             color={AppColors.secondaryColor}
