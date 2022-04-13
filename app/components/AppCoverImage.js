@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     width: 390,
     height: 390,
-    marginBottom: 40,
   },
 });
 

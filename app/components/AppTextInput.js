@@ -18,12 +18,12 @@ function AppTextInput({ color = AppColors.black, ...otherProps }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 30,
+    marginTop: 30,
   },
 
   textInput: {
     backgroundColor: AppColors.white,
-    width: "70%",
+    width: "100%",
     alignSelf: "center",
     padding: 15,
     borderColor: AppColors.secondaryColor,

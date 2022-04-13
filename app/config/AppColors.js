@@ -5,4 +5,5 @@ export default {
   primaryColor: "#407873",
   secondaryColor: "#16182B",
   accentColor: "#FFBCB3",
+  errorColor: "#CA2525",
 };
