@@ -3,6 +3,8 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import AppErrorText from "../components/AppErrorText";
+
 //Dummy data
 const users = [
   {
@@ -21,6 +23,20 @@ const users = [
   },
 ];
 
+//Yup schema for validation
+const schema = Yup.object().shape({
+  email: Yup.string().required().email().label("Email"),
+  password: Yup.string().required().min(4).max(8).label("Password"),
+});
+
+//Validate that user exists
+const validateUser = ({ email, password }) => {
+  return (
+    users.filter((user) => user.email === email && user.password === password)
+      .length > 0
+  );
+};
+
 import {
   Linking,
   KeyboardAvoidingView,
@@ -37,67 +53,76 @@ import AppTextInput from "../components/AppTextInput";
 
 function LoginScreen(props) {
   return (
+    //Everything inside KeyboardAvoidingView will move up when the keyboard appears
     <KeyboardAvoidingView keyboardVerticalOffset={100} behavior="position">
       {/* Cover image */}
-      <AppCoverImage
-        source={require("/Users/paola/Projects/Uni/COMP3130/leafletApp/app/assets/welcome.png")}
-      />
+      <AppCoverImage source={require("../assets/welcome.png")} />
 
       {/* Login form starts */}
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, { resetForm }) => {
+          if (validateUser(values)) {
+            resetForm({});
+            console.log(values);
+          } else {
+            resetForm({});
+            alert("Uh oh! Invalid login details");
+          }
+        }}
+        validationSchema={schema}
       >
-        {({ handleChange, handleSubmit }) => (
+        {/* Handle changes and errors to the form */}
+        {({
+          errors,
+          handleChange,
+          handleSubmit,
+          setFieldTouched,
+          touched,
+          values,
+        }) => (
           <>
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              clearButtonMode="while-editing"
-              keyboardType="email-address"
-              onChangeText={handleChange("email")}
-              placeholder="Email"
-              textContentType="emailAddress"
-            />
+            <View style={styles.textInputContainer}>
+              <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                clearButtonMode="while-editing"
+                keyboardType="email-address"
+                onBlur={() => setFieldTouched("email")}
+                onChangeText={handleChange("email")}
+                placeholder="Email"
+                textContentType="emailAddress"
+                value={values.email || ""}
+              />
 
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              clearButtonMode="while-editing"
-              keyboardType="name-phone-pad"
-              onChangeText={handleChange("password")}
-              placeholder="Password"
-              secureTextEntry
-              textContentType="password"
-            />
+              {/* Error message for email */}
+              {touched.email && <AppErrorText>{errors.email}</AppErrorText>}
 
-            <AppButton title="LOG IN" onPress={handleSubmit} />
+              <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                onBlur={() => setFieldTouched("password")}
+                clearButtonMode="while-editing"
+                keyboardType="name-phone-pad"
+                onChangeText={handleChange("password")}
+                placeholder="Password"
+                secureTextEntry
+                textContentType="password"
+                value={values.password || ""}
+              />
+
+              {/* Error message for password */}
+              {touched.password && (
+                <AppErrorText>{errors.password}</AppErrorText>
+              )}
+            </View>
+
+            <View style={styles.buttonContainer}>
+              <AppButton title="LOG IN" onPress={handleSubmit} />
+            </View>
           </>
         )}
       </Formik>
-
-      {/* <View>
-        <AppTextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="while-editing"
-          keyboardType="email-address"
-          placeholder="Email"
-          textContentType="emailAddress"
-        />
-
-        <AppTextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="while-editing"
-          keyboardType="name-phone-pad"
-          placeholder="Password"
-          secureTextEntry
-          textContentType="password"
-        />
-
-        <AppButton title="LOG IN" onPress={() => console.log("hi")} />
-      </View> */}
       {/* Login Form ends */}
 
       {/* Link to signup form for returning users */}
@@ -113,7 +138,11 @@ function LoginScreen(props) {
 }
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    marginTop: 30,
+  },
   loginLink: { alignItems: "center", marginTop: 40 },
+  textInputContainer: { alignSelf: "center", width: "70%" },
 });
 
 export default LoginScreen;
