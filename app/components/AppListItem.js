@@ -4,13 +4,11 @@
 //Background color for the entire list item can be specified
 import React from "react";
 
+import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppColors from "../config/AppColors";
-import AppIcon from "./AppIcon";
 import AppText from "./AppText";
-
-import { TouchableOpacity, StyleSheet, View } from "react-native";
 
 function AppListItem({
   backgroundColor,
