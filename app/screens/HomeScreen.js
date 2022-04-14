@@ -8,21 +8,19 @@ import AppImageCollection from "../components/AppImageCollection";
 import AppListItem from "../components/AppListItem";
 import AppText from "../components/AppText";
 
+//Pass the current user's ID and retrieve their corresponding entries
 const entries = (userid) => {
   let commonData = DataStore.getInstance();
   return commonData.getEntries(userid);
 };
 
 function HomeScreen({ navigation, route }) {
-  console.log(route.params);
-  console.log("id passed to login screen", route.params.paramID);
-
+  //Save the user entries into a variable
   const userEntries = entries(route.params.paramID);
-
-  console.log("userEntries", userEntries);
 
   return (
     <View styles={styles.container}>
+      {/* User profile view */}
       <View style={styles.userProfile}>
         <Image
           style={{
@@ -35,16 +33,22 @@ function HomeScreen({ navigation, route }) {
         <AppText>{route.params.paramName}</AppText>
         <AppText>{route.params.paramEmail}</AppText>
       </View>
-      <AppImageCollection data={userEntries} numCols={3} />
+
+      {/* User photo collection view */}
+      <View style={styles.userCollection}>
+        <AppImageCollection data={userEntries} numCols={3} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
   userProfile: {
     alignItems: "center",
     paddingVertical: 40,
+  },
+  userCollection: {
+    alignItems: "center",
   },
 });
 
