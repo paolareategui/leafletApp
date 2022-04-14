@@ -7,18 +7,18 @@ import AppErrorText from "../components/AppErrorText";
 
 //Yup schema for validation
 const schema = Yup.object().shape({
-  userName: Yup.string().required().min(2).label("Username"),
+  username: Yup.string().required().min(2).label("username"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).max(8).label("Password"),
 });
 
-//Validate that user exists
-const validateUser = ({ email, password }) => {
-  return (
-    users.filter((user) => user.email === email && user.password === password)
-      .length > 0
-  );
-};
+// //Validate that user exists
+// const validateUser = ({ email, password }) => {
+//   return (
+//     users.filter((user) => user.email === email && user.password === password)
+//       .length > 0
+//   );
+// };
 
 import {
   Linking,
@@ -35,11 +35,6 @@ import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 
 function RegisterScreen(props) {
-  //State variables for new users
-  const [userName, setUserName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
   return (
     //Everything inside KeyboardAvoidingView will move up when the keyboard appears
     <KeyboardAvoidingView keyboardVerticalOffset={100} behavior="position">
@@ -48,13 +43,10 @@ function RegisterScreen(props) {
 
       {/* Sign up form starts */}
       <Formik
-        initialValues={{ userName: "", email: "", password: "" }}
+        initialValues={{ username: "", email: "", password: "" }}
         onSubmit={(values, { resetForm }) => {
           resetForm({});
-          setUserName(values.userName);
-          setEmail(values.email);
-          setPassword(values.password);
-          console.log(userName, email, password);
+          console.log(values);
         }}
         validationSchema={schema}
       >
@@ -69,22 +61,22 @@ function RegisterScreen(props) {
         }) => (
           <>
             <View style={styles.textInputContainer}>
-              {/* Username */}
+              {/* username */}
               <AppTextInput
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="while-editing"
                 keyboardType="default"
-                onBlur={() => setFieldTouched("userName")}
-                onChangeText={handleChange("userName")}
+                onBlur={() => setFieldTouched("username")}
+                onChangeText={handleChange("username")}
                 placeholder="Your name"
                 textContentType="username"
-                value={values.userName || ""}
+                value={values.username || ""}
               />
 
               {/* Error message for username */}
-              {touched.userName && (
-                <AppErrorText>{errors.userName}</AppErrorText>
+              {touched.username && (
+                <AppErrorText>{errors.username}</AppErrorText>
               )}
 
               {/* Email */}
