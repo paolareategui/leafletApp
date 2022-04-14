@@ -69,7 +69,15 @@ function AppImageCollection({ data, numCols }) {
                 setModalData(item);
               }}
             >
-              <Image source={item.image} style={{ width: 115, height: 115 }} />
+              <Image
+                source={item.image}
+                style={{
+                  width: 115,
+                  height: 115,
+                  margin: 4,
+                  borderRadius: 10,
+                }}
+              />
             </TouchableOpacity>
           </View>
         )}

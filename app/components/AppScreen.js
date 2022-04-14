@@ -15,11 +15,9 @@ function AppScreen({ children, style }) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: AppColors.backgroundColor,
   },
   screenPadding: {
     flex: 1,
-    // padding: 15,
   },
 });
 
