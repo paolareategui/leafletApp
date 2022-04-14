@@ -3,19 +3,20 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import DataStore from "../data/DataStore";
 import AppErrorText from "../components/AppErrorText";
 
-//Dummy data
+//Test user data
 const users = [
   {
-    id: "user1",
+    userid: "user1",
     username: "Carmen Carrera",
-    email: "carmen@mail.com",
+    email: "c@m.com",
     password: "1234",
     image: require("../assets/user1.png"),
   },
   {
-    id: "user2",
+    userid: "user2",
     username: "Tom Craig",
     email: "tc@mail.com",
     password: "1234",
@@ -37,6 +38,18 @@ const validateUser = ({ email, password }) => {
   );
 };
 
+//Get user ID from dummy data using email address as unique identificator
+const getUser = ({ email }) => {
+  return users.find((user) => user.email === email);
+};
+
+//Generate an instance of the user to pass as parameters
+const createUser = ({ email }) => {
+  let commonData = DataStore.getInstance();
+  let userid = getUser({ email }).id;
+  commonData.setUserID(userid);
+};
+
 import {
   Linking,
   KeyboardAvoidingView,
@@ -51,7 +64,7 @@ import AppCoverImage from "../components/AppCoverImage";
 import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 
-function LoginScreen(props) {
+function LoginScreen({ navigation }) {
   return (
     //Everything inside KeyboardAvoidingView will move up when the keyboard appears
     <KeyboardAvoidingView keyboardVerticalOffset={100} behavior="position">
@@ -63,8 +76,16 @@ function LoginScreen(props) {
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { resetForm }) => {
           if (validateUser(values)) {
+            console.log("values", values);
             resetForm({});
-            console.log(values);
+            createUser(values);
+            navigation.navigate("Home", {
+              // paramUserID: values.userid,
+              paramEmail: values.email,
+              paramName: getUser(values).username,
+              paramImage: getUser(values).image,
+              paramID: getUser(values).userid,
+            });
           } else {
             resetForm({});
             alert("Uh oh! Invalid login details");
