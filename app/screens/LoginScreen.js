@@ -9,14 +9,14 @@ import AppErrorText from "../components/AppErrorText";
 const users = [
   {
     id: "user1",
-    name: "Carmen Carrera",
+    username: "Carmen Carrera",
     email: "carmen@mail.com",
     password: "1234",
     image: require("../assets/user1.png"),
   },
   {
     id: "user2",
-    name: "Tom Craig",
+    username: "Tom Craig",
     email: "tc@mail.com",
     password: "1234",
     image: require("../assets/user2.png"),
@@ -72,7 +72,7 @@ function LoginScreen(props) {
         }}
         validationSchema={schema}
       >
-        {/* Handle changes and errors to the form */}
+        {/* Variables to be passed to form */}
         {({
           errors,
           handleChange,
