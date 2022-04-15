@@ -54,34 +54,36 @@ function AppImageCollection({ data, numCols }) {
       </View>
 
       {/* Displays user images */}
-      <FlatList
-        numColumns={numCols}
-        data={data}
-        keyExtractor={(item) => item.imageid}
-        ListEmptyComponent={
-          <AppText>You haven't posted any entries yet</AppText>
-        }
-        renderItem={({ item }) => (
-          <View>
-            <TouchableOpacity
-              onPress={() => {
-                setModalVisible(!modalVisible);
-                setModalData(item);
-              }}
-            >
-              <Image
-                source={item.image}
-                style={{
-                  width: 115,
-                  height: 115,
-                  margin: 4,
-                  borderRadius: 10,
+      <View style={styles.userImages}>
+        <FlatList
+          numColumns={numCols}
+          data={data}
+          keyExtractor={(item) => item.imageid}
+          ListEmptyComponent={
+            <AppText>You haven't posted any entries yet</AppText>
+          }
+          renderItem={({ item }) => (
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  setModalData(item);
                 }}
-              />
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+              >
+                <Image
+                  source={item.image}
+                  style={{
+                    width: 115,
+                    height: 115,
+                    margin: 4,
+                    borderRadius: 10,
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+          )}
+        />
+      </View>
     </View>
   );
 }
@@ -101,6 +103,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  userImages: {
+    alignItems: "center",
   },
 });
 
