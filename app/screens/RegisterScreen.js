@@ -21,7 +21,6 @@ const schema = Yup.object().shape({
 // };
 
 import {
-  Linking,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -34,12 +33,14 @@ import AppCoverImage from "../components/AppCoverImage";
 import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 
-function RegisterScreen(props) {
+function RegisterScreen({ navigation }) {
   return (
     //Everything inside KeyboardAvoidingView will move up when the keyboard appears
     <KeyboardAvoidingView keyboardVerticalOffset={100} behavior="position">
       {/* Cover image */}
-      <AppCoverImage source={require("../assets/welcome.png")} />
+      <View style={styles.coverImageView}>
+        <AppCoverImage source={require("../assets/welcome.png")} />
+      </View>
 
       {/* Sign up form starts */}
       <Formik
@@ -125,7 +126,7 @@ function RegisterScreen(props) {
 
       {/* Link to signup form for returning users */}
       <View style={styles.loginLink}>
-        <TouchableOpacity onPress={() => Linking.openURL("http://google.com")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <AppText style={{ fontSize: 13 }}>
             Already have an account?{" "}
             <Text style={{ fontWeight: "600" }}>Sign up</Text>
@@ -140,7 +141,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 30,
   },
-  loginLink: { alignItems: "center", marginTop: 40 },
+  coverImageView: {
+    marginTop: "-20%",
+  },
+  loginLink: { alignItems: "center", marginTop: 40, marginBottom: 10 },
   textInputContainer: { alignSelf: "center", width: "70%" },
 });
 

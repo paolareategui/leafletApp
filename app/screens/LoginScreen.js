@@ -51,7 +51,6 @@ const createUser = ({ email }) => {
 };
 
 import {
-  Linking,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -148,7 +147,7 @@ function LoginScreen({ navigation }) {
 
       {/* Link to signup form for returning users */}
       <View style={styles.loginLink}>
-        <TouchableOpacity onPress={() => Linking.openURL("http://google.com")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
           <AppText style={{ fontSize: 13 }}>
             No account? <Text style={{ fontWeight: "600" }}>Log in</Text>
           </AppText>
