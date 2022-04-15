@@ -37,7 +37,11 @@ function HomeScreen({ navigation, route }) {
 
       {/* User photo collection view */}
       <View style={styles.userCollection}>
-        <AppImageCollection data={userEntries} numCols={3} />
+        <AppImageCollection
+          data={userEntries}
+          numCols={3}
+          navigation={navigation}
+        />
       </View>
 
       {/*Dummy logout button takes user to login screen*/}

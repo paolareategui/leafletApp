@@ -15,44 +15,13 @@ import AppCard from "./AppCard";
 import AppColors from "../config/AppColors";
 import AppText from "./AppText";
 
-function AppImageCollection({ data, numCols }) {
+function AppImageCollection({ data, navigation, numCols }) {
   //Set up modal visibility and data
   const [modalVisible, setModalVisible] = useState(false);
   const [modalData, setModalData] = useState("");
 
   return (
     <View>
-      {/* Modal view starts */}
-      <View>
-        <Modal
-          animationType="slide"
-          presentationStyle="pageSheet"
-          //   transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.modalView}>
-            {/* <Image source={modalData.image} /> */}
-            <AppCard
-              image={modalData.image}
-              title={modalData.title}
-              entry={modalData.entry}
-            />
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={[styles.textStyle, { textAlign: "center" }]}>
-                Close
-              </Text>
-            </Pressable>
-          </View>
-        </Modal>
-      </View>
-
       {/* Displays user images */}
       <View style={styles.userImages}>
         <FlatList
@@ -60,17 +29,19 @@ function AppImageCollection({ data, numCols }) {
           data={data}
           keyExtractor={(item) => item.imageid}
           ListEmptyComponent={
+            //Display this message if user images are not available
             <AppText style={{ textAlign: "center" }}>
-              You haven't posted any entries yet
+              You haven't posted anything yet
             </AppText>
           }
           renderItem={({ item }) => (
             <View>
               <TouchableOpacity
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                  setModalData(item);
-                }}
+                onPress={() =>
+                  navigation.navigate("More Info", {
+                    paramAll: item,
+                  })
+                }
               >
                 <Image
                   source={item.image}
