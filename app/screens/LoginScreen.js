@@ -46,7 +46,7 @@ const getUser = ({ email }) => {
 //Generate an instance of the user to pass as parameters
 const createUser = ({ email }) => {
   let commonData = DataStore.getInstance();
-  let userid = getUser({ email }).id;
+  let userid = getUser({ email }).userid;
   commonData.setUserID(userid);
 };
 
