@@ -60,7 +60,9 @@ function AppImageCollection({ data, numCols }) {
           data={data}
           keyExtractor={(item) => item.imageid}
           ListEmptyComponent={
-            <AppText>You haven't posted any entries yet</AppText>
+            <AppText style={{ textAlign: "center" }}>
+              You haven't posted any entries yet
+            </AppText>
           }
           renderItem={({ item }) => (
             <View>
