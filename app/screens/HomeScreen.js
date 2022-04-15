@@ -12,7 +12,7 @@ const entries = (userid) => {
   return commonData.getEntries(userid);
 };
 
-function HomeScreen({ navigation, route }) {
+function HomeScreen({ route }) {
   //Save the user entries into a variable
   const userEntries = entries(route.params.paramID);
 
@@ -28,7 +28,9 @@ function HomeScreen({ navigation, route }) {
           }}
           source={route.params.paramImage}
         />
-        <AppText>{route.params.paramName}</AppText>
+        <AppText style={{ fontWeight: "bold", marginTop: 15 }}>
+          {route.params.paramName}
+        </AppText>
         <AppText>{route.params.paramEmail}</AppText>
       </View>
 
