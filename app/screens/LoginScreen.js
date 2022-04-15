@@ -78,14 +78,28 @@ function LoginScreen({ navigation }) {
             console.log("values", values);
             resetForm({});
             createUser(values);
-            navigation.navigate("Home", {
-              // paramUserID: values.userid,
-              paramEmail: values.email,
-              paramName: getUser(values).username,
-              paramImage: getUser(values).image,
-              paramID: getUser(values).userid,
+            navigation.navigate("My Home", {
+              screen: "Home",
+              params: {
+                screen: "User profile",
+                params: {
+                  paramEmail: values.email,
+                  paramName: getUser(values).username,
+                  paramImage: getUser(values).image,
+                  paramID: getUser(values).userid,
+                },
+              },
             });
-          } else {
+          }
+          //   navigation.navigate("Home", {
+          //     // paramUserID: values.userid,
+          //     paramEmail: values.email,
+          //     paramName: getUser(values).username,
+          //     paramImage: getUser(values).image,
+          //     paramID: getUser(values).userid,
+          //   });
+          // }
+          else {
             resetForm({});
             alert("Uh oh! Invalid login details");
           }
@@ -101,6 +115,7 @@ function LoginScreen({ navigation }) {
           touched,
           values,
         }) => (
+          // Form input fields
           <>
             <View style={styles.textInputContainer}>
               <AppTextInput

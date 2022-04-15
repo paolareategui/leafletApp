@@ -2,10 +2,8 @@ import React from "react";
 
 import { Image, StyleSheet, View } from "react-native";
 
-import AppColors from "../config/AppColors";
 import DataStore from "../data/DataStore";
 import AppImageCollection from "../components/AppImageCollection";
-import AppListItem from "../components/AppListItem";
 import AppText from "../components/AppText";
 
 //Pass the current user's ID and retrieve their corresponding entries
