@@ -1,10 +1,11 @@
 import React from "react";
 
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import DataStore from "../data/DataStore";
+import AppButton from "../components/AppButton";
 import AppImageCollection from "../components/AppImageCollection";
 import AppText from "../components/AppText";
+import DataStore from "../data/DataStore";
 
 //Pass the current user's ID and retrieve their corresponding entries
 const entries = (userid) => {
@@ -12,7 +13,7 @@ const entries = (userid) => {
   return commonData.getEntries(userid);
 };
 
-function HomeScreen({ route }) {
+function HomeScreen({ navigation, route }) {
   //Save the user entries into a variable
   const userEntries = entries(route.params.paramID);
 
@@ -38,17 +39,28 @@ function HomeScreen({ route }) {
       <View style={styles.userCollection}>
         <AppImageCollection data={userEntries} numCols={3} />
       </View>
+
+      {/*Dummy logout button takes user to login screen*/}
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <AppText style={{ fontWeight: "600", textAlign: "center" }}>
+          Logout
+        </AppText>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {},
   userProfile: {
     alignItems: "center",
     paddingVertical: 40,
   },
   userCollection: {
-    alignItems: "center",
+    marginBottom: 30,
+  },
+  logoutButtonContainer: {
+    marginBottom: 10,
   },
 });
 
