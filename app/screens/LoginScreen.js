@@ -155,7 +155,7 @@ function LoginScreen({ navigation }) {
       <View style={styles.loginLink}>
         <TouchableOpacity onPress={() => navigation.navigate("Register")}>
           <AppText style={{ fontSize: 13 }}>
-            No account? <Text style={{ fontWeight: "600" }}>Log in</Text>
+            No account? <Text style={{ fontWeight: "600" }}>Sign up</Text>
           </AppText>
         </TouchableOpacity>
       </View>

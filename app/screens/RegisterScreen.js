@@ -129,7 +129,7 @@ function RegisterScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <AppText style={{ fontSize: 13 }}>
             Already have an account?{" "}
-            <Text style={{ fontWeight: "600" }}>Sign up</Text>
+            <Text style={{ fontWeight: "600" }}>Log in</Text>
           </AppText>
         </TouchableOpacity>
       </View>
