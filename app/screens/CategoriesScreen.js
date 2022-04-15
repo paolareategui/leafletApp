@@ -36,7 +36,7 @@ function CategoriesScreen({ navigation }) {
             text={item.text}
             backgroundColor={AppColors.primaryColor}
             onPress={() =>
-              navigation.navigate("Posts", {
+              navigation.navigate("Category Collection", {
                 paramCatID: item.catid,
               })
             }

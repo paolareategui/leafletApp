@@ -26,7 +26,7 @@ const getSelectedCategory = (catid) => {
   return entries.filter((category) => category.catid === catid);
 };
 
-function PostsScreen({ route }) {
+function CategoryCollectionScreen({ route }) {
   //Use routed parameter to fetch entries matching the category id
   const entries = getSelectedCategory(route.params.paramCatID);
 
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PostsScreen;
+export default CategoryCollectionScreen;

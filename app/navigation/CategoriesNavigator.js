@@ -3,7 +3,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import CategoriesScreen from "../screens/CategoriesScreen";
-import PostsScreen from "../screens/PostsScreen";
+import CategoryCollectionScreen from "../screens/CategoryCollectionScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +17,10 @@ const CategoriesNavigator = () => (
       />
     </Stack.Group>
     <Stack.Group screenOptions={{ presentation: "modal" }}>
-      <Stack.Screen name="Posts" component={PostsScreen} />
+      <Stack.Screen
+        name="Category Collection"
+        component={CategoryCollectionScreen}
+      />
     </Stack.Group>
   </Stack.Navigator>
 );
