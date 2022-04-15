@@ -7,24 +7,27 @@ import AppListItem from "../components/AppListItem";
 
 //TEST DATA
 const categories = [
-  { id: 1, text: "succulents", icon: "spa" },
-  { id: 2, text: "flowers", icon: "flower" },
-  { id: 3, text: "hanging", icon: "globe-light" },
+  { catid: 1, text: "Succulents", icon: "spa" },
+  { catid: 2, text: "Flowers", icon: "flower" },
+  { catid: 3, text: "Hanging", icon: "globe-light" },
+  { catid: 4, text: "Herbs", icon: "barley" },
+  { catid: 5, text: "Foliage", icon: "sprout" },
+  { catid: 6, text: "Cactus", icon: "sprout" },
 ];
 
-function CategoriesScreen(props) {
+function CategoriesScreen({ navigation }) {
   return (
-    <View style={styles.innerContainer}>
+    <View style={styles.container}>
       <FlatList
         numColumns={3}
         data={categories}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.catid.toString()}
         renderItem={({ item }) => (
           <AppListItem
             style={{
               width: 90,
               height: 90,
-              marginHorizontal: 5,
+              margin: 10,
               borderRadius: 10,
             }}
             color={AppColors.backgroundColor}
@@ -32,7 +35,7 @@ function CategoriesScreen(props) {
             iconSize={20}
             text={item.text}
             backgroundColor={AppColors.primaryColor}
-            onPress={() => console.log("hey")}
+            onPress={() => navigation.navigate("Posts")}
           />
         )}
       />
@@ -40,6 +43,11 @@ function CategoriesScreen(props) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    marginVertical: 70,
+  },
+});
 
 export default CategoriesScreen;
