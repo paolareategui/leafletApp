@@ -1,38 +1,41 @@
 import React from "react";
 
-import { FlatList, StyleSheets, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
-import AppColors from "../config/AppColors";
 import AppCard from "../components/AppCard";
+import DataStore from "../data/DataStore";
 
-//TEST DATA
-entries = [
-  {
-    userid: 1,
-    imageid: 1,
-    title: "My succulent is thriving",
-    entry:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu enim sodales, venenatis libero sed, aliquet erat. Ut commodo mi sem, eu ullamcorper neque fermentum ut. Pellentesque ullamcorper laoreet ipsum, vel ultrices risus. Mauris eu.",
-    category: "Succulents",
-    image: require("../assets/succulents1.jpeg"),
-  },
-  {
-    userid: 1,
-    imageid: 2,
-    title: "Month 3 of nursing it back to life",
-    entry:
-      "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
-    category: "Succulents",
-    image: require("../assets/foliage1.jpeg"),
-  },
-];
+//Get the current user
+const getCurrentUser = () => {
+  let commonData = DataStore.getInstance();
+  let userid = commonData.getUserID();
+  return userid;
+};
 
-function PostsScreen(props) {
+// Get the current user's posts
+const getUserEntries = () => {
+  let commonData = DataStore.getInstance();
+  let id = getCurrentUser();
+  let entries = commonData.getEntries(id);
+  return entries;
+};
+
+//Get the corresponding entries for the selected category
+const getSelectedCategory = (catid) => {
+  let entries = getUserEntries();
+  return entries.filter((category) => category.catid === catid);
+};
+
+function PostsScreen({ route }) {
+  //Use routed parameter to fetch entries matching the category id
+  const entries = getSelectedCategory(route.params.paramCatID);
+
   return (
-    <View>
+    //Category collectio view
+    <View style={styles.container}>
       <FlatList
         data={entries}
-        keyExtractor={(item) => item.imageid}
+        keyExtractor={(item) => item.paramImageID}
         renderItem={({ item }) => (
           <AppCard title={item.title} image={item.image} entry={item.entry} />
         )}
@@ -40,5 +43,11 @@ function PostsScreen(props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 40,
+  },
+});
 
 export default PostsScreen;

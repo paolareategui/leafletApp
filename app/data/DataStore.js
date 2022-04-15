@@ -11,6 +11,7 @@ export default class DataStore {
       entry:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu enim sodales, venenatis libero sed, aliquet erat. Ut commodo mi sem, eu ullamcorper neque fermentum ut. Pellentesque ullamcorper laoreet ipsum, vel ultrices risus. Mauris eu.",
       category: "Succulents",
+      catid: 1,
       image: require("../assets/succulents1.jpeg"),
     },
     {
@@ -19,7 +20,8 @@ export default class DataStore {
       title: "Month 3 of nursing it back to life",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
-      category: "Succulents",
+      category: "Foliage",
+      catid: 5,
       image: require("../assets/foliage1.jpeg"),
     },
 
@@ -31,6 +33,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Cactus",
       image: require("../assets/cactus1.jpeg"),
+      catid: 6,
     },
 
     {
@@ -41,6 +44,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Flowers",
       image: require("../assets/flowers1.jpeg"),
+      catid: 2,
     },
 
     {
@@ -51,6 +55,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Herbs",
       image: require("../assets/herbs1.jpeg"),
+      catid: 4,
     },
 
     {
@@ -61,6 +66,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Foliage2",
       image: require("../assets/foliage2.jpeg"),
+      catid: 5,
     },
 
     {
@@ -71,6 +77,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Hanging",
       image: require("../assets/hanging1.jpeg"),
+      catid: 3,
     },
 
     {
@@ -81,6 +88,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Cactus",
       image: require("../assets/cactus2.jpeg"),
+      catid: 6,
     },
 
     {
@@ -91,6 +99,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Succulents",
       image: require("../assets/succulents2.jpeg"),
+      catid: 1,
     },
 
     //user2 entries
@@ -103,6 +112,7 @@ export default class DataStore {
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
       category: "Flowers",
       image: require("../assets/flowers2.jpeg"),
+      catid: 2,
     },
 
     {
@@ -111,8 +121,9 @@ export default class DataStore {
       title: "Look at her grow. I'm in awe",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
-      category: "Flowers",
+      category: "Hanging",
       image: require("../assets/hanging2.jpeg"),
+      catid: 3,
     },
     {
       userid: "user2",
@@ -120,11 +131,13 @@ export default class DataStore {
       title: "The smell is amazing",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
-      category: "Flowers",
+      category: "Herbs",
       image: require("../assets/herbs2.jpeg"),
+      catid: 4,
     },
   ];
 
+  //create an instance of the data store
   static getInstance() {
     if (DataStore.myInstance == null) {
       DataStore.myInstance = new DataStore();
@@ -132,18 +145,22 @@ export default class DataStore {
     return this.myInstance;
   }
 
+  // get the current user's ID
   getUserID() {
     return this.userid;
   }
 
+  //Save the current user's ID
   setUserID(id) {
     this.userid = id;
   }
 
+  //Retrieve the current user's posts
   getEntries(id) {
     return this.entries.filter((entry) => entry.userid === id);
   }
 
+  //Post a new entry
   addEntry(entry) {
     this.books.push(entry);
   }

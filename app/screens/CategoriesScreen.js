@@ -5,14 +5,14 @@ import { FlatList, View, StyleSheet } from "react-native";
 import AppColors from "../config/AppColors";
 import AppListItem from "../components/AppListItem";
 
-//TEST DATA
+//Category DATA
 const categories = [
   { catid: 1, text: "Succulents", icon: "spa" },
   { catid: 2, text: "Flowers", icon: "flower" },
   { catid: 3, text: "Hanging", icon: "globe-light" },
   { catid: 4, text: "Herbs", icon: "barley" },
   { catid: 5, text: "Foliage", icon: "sprout" },
-  { catid: 6, text: "Cactus", icon: "sprout" },
+  { catid: 6, text: "Cactus", icon: "cactus" },
 ];
 
 function CategoriesScreen({ navigation }) {
@@ -35,7 +35,11 @@ function CategoriesScreen({ navigation }) {
             iconSize={20}
             text={item.text}
             backgroundColor={AppColors.primaryColor}
-            onPress={() => navigation.navigate("Posts")}
+            onPress={() =>
+              navigation.navigate("Posts", {
+                paramCatID: item.catid,
+              })
+            }
           />
         )}
       />
