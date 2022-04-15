@@ -23,7 +23,7 @@ const AuthNavigator = () => (
       options={{ headerShown: false }}
     />
     <Stack.Screen
-      name="My Home"
+      name="User home"
       component={TabNavigator}
       options={{ headerShown: false }}
     />

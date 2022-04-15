@@ -7,6 +7,7 @@ import AppIcon from "../components/AppIcon";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import HomeNavigator from "./HomeNavigator";
 import NewPostScreen from "../screens/NewPostScreen";
+import CategoriesNavigator from "./CategoriesNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -46,7 +47,7 @@ const TabNavigator = () => (
 
     <Tab.Screen
       name="Categories"
-      component={CategoriesScreen}
+      component={CategoriesNavigator}
       options={{
         tabBarIcon: () => (
           <AppIcon size={55} name="leaf" iconColor={AppColors.primaryColor} />
