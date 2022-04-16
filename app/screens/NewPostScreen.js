@@ -15,7 +15,7 @@ import AppText from "../components/AppText";
 
 function NewPostScreen(props) {
   //Image picker setup
-  let openImagePickerAsync = async () => {
+  let pickImage = async () => {
     //Set up phone access permission
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -25,16 +25,13 @@ function NewPostScreen(props) {
       return;
     }
 
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    console.log(pickerResult);
+    let result = await ImagePicker.launchImageLibraryAsync();
+    console.log(result);
 
-    //Handle cancelling out of image picker
-    if (pickerResult.cancelled === true) {
-      return;
+    //If image is selected save it to state variable
+    if (!result.cancelled) {
+      setSelectedImage({ path: result.uri });
     }
-
-    //Save image into state variable
-    setSelectedImage({ path: pickerResult.uri });
   };
   //Image picker setup ends
 
@@ -43,7 +40,7 @@ function NewPostScreen(props) {
 
   return (
     <View>
-      {/* Display image and remove button when image is selected */}
+      {/* Display selected image and remove button conditionally */}
       {selectedImage ? (
         <View>
           <Image
@@ -53,7 +50,7 @@ function NewPostScreen(props) {
         </View>
       ) : (
         <View style={styles.imageButton}>
-          <TouchableOpacity onPress={openImagePickerAsync} style={{}}>
+          <TouchableOpacity onPress={pickImage} style={{}}>
             <AppIcon
               borderRadius={50}
               name="camera"
@@ -70,7 +67,7 @@ function NewPostScreen(props) {
 
 const styles = StyleSheet.create({
   imageButton: {
-    height: 290,
+    height: 220,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
