@@ -4,12 +4,20 @@ import { StyleSheet, View } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function AppIcon({ backgroundColor, iconColor, name, size, style }) {
+function AppIcon({
+  backgroundColor,
+  borderRadius,
+  iconColor,
+  name,
+  size,
+  style,
+}) {
   return (
     <View
       style={[
         {
           alignItems: "center",
+          borderRadius: borderRadius,
           backgroundColor,
           height: size,
           justifyContent: "center",
