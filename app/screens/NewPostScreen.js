@@ -4,6 +4,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import { Formik } from "formik";
+import { Picker } from "@react-native-picker/picker";
 import * as Yup from "yup";
 
 import AppButton from "../components/AppButton";
@@ -13,16 +14,18 @@ import AppErrorText from "../components/AppErrorText";
 import AppIcon from "../components/AppIcon";
 import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
+import AppPicker from "../components/AppPicker";
 
 function NewPostScreen({ navigation }) {
-  //Category DATA
-  const categories = [
-    { catid: 1, text: "Succulents", icon: "spa" },
-    { catid: 2, text: "Flowers", icon: "flower" },
-    { catid: 3, text: "Hanging", icon: "globe-light" },
-    { catid: 4, text: "Herbs", icon: "barley" },
-    { catid: 5, text: "Foliage", icon: "sprout" },
-    { catid: 6, text: "Cactus", icon: "cactus" },
+  const testdata = [
+    {
+      label: "Adventure",
+      value: 1,
+      icon: "airplane-takeoff",
+      backgroundColor: "red",
+    },
+    { label: "Thriller", value: 2, backgroundColor: "blue" },
+    { label: "Fiction", value: 3, backgroundColor: "green" },
   ];
 
   //Image picker setup
@@ -53,8 +56,6 @@ function NewPostScreen({ navigation }) {
   const addEntry = (values) => {
     console.log("values sent to addEntry", values);
 
-    console.log("image values inside addEntry", values.image);
-
     // let commonData = DataManager.getInstance();
     // let user = commonData.getUserID();
     // const entries = commonData.getEntries(user);
@@ -76,33 +77,13 @@ function NewPostScreen({ navigation }) {
   const schema = Yup.object().shape({
     title: Yup.string().required().label("Title"),
     entry: Yup.string().required().max(240).label("Entry"),
+    catid: Yup.string().required().label("Category"),
   });
 
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  console.log(selectedLanguage);
   return (
     <View>
-      {/* Display selected image and remove button conditionally */}
-      {/* {selectedImage ? (
-        <View>
-          <Image
-            source={{ uri: selectedImage.path }}
-            style={styles.selectedImage}
-          />
-        </View>
-      ) : (
-        <View style={styles.imageButton}>
-          <TouchableOpacity onPress={pickImage
-          } style={{}}>
-            <AppIcon
-              borderRadius={50}
-              name="camera"
-              iconColor={AppColors.backgroundColor}
-              size={50}
-              backgroundColor={AppColors.primaryColor}
-            />
-          </TouchableOpacity>
-        </View>
-      )} */}
-
       {/* New Post form starts */}
       <Formik
         initialValues={{
@@ -111,7 +92,7 @@ function NewPostScreen({ navigation }) {
           entry: "",
           // image: "",
           // userid: "",
-          // catid: "",
+          catid: "",
           // entryid: "",
         }}
         onSubmit={(values, { resetForm }) => {
@@ -127,6 +108,7 @@ function NewPostScreen({ navigation }) {
           errors,
           handleChange,
           handleSubmit,
+          setFieldValue,
           setFieldTouched,
           touched,
           values,
@@ -192,6 +174,27 @@ function NewPostScreen({ navigation }) {
 
               {/* Error message for password */}
               {touched.entry && <AppErrorText>{errors.entry}</AppErrorText>}
+            </View>
+
+            {/* Select a category */}
+            <View>
+              <Picker
+                // passing value directly from formik
+                selectedValue={values.catid}
+                // changing value in formik
+                onValueChange={(itemValue, itemIndex) => {
+                  setFieldValue("catid", itemValue);
+                  handleChange("catid");
+                }}
+              >
+                <Picker.Item label="Select your language" value={null} />
+                <Picker.Item label="Java" value={1} />
+                <Picker.Item label="Python" value={2} />
+                <Picker.Item label="Scala" value={3} />
+              </Picker>
+
+              {/* Error message for the picker */}
+              {touched.title && <AppErrorText>{errors.catid}</AppErrorText>}
             </View>
 
             <View style={styles.buttonContainer}>
