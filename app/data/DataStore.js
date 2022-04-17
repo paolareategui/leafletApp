@@ -6,7 +6,7 @@ export default class DataStore {
     //user1 entries
     {
       userid: "user1",
-      imageid: 1,
+      entryid: 1,
       title: "My succulent is thriving",
       entry:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu enim sodales, venenatis libero sed, aliquet erat. Ut commodo mi sem, eu ullamcorper neque fermentum ut. Pellentesque ullamcorper laoreet ipsum, vel ultrices risus. Mauris eu.",
@@ -16,7 +16,7 @@ export default class DataStore {
     },
     {
       userid: "user1",
-      imageid: 2,
+      entryid: 2,
       title: "Month 3 of nursing it back to life",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -27,7 +27,7 @@ export default class DataStore {
 
     {
       userid: "user1",
-      imageid: 3,
+      entryid: 3,
       title: "Happy and vibrant",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -38,7 +38,7 @@ export default class DataStore {
 
     {
       userid: "user1",
-      imageid: 4,
+      entryid: 4,
       title: "In bloom! ",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -49,7 +49,7 @@ export default class DataStore {
 
     {
       userid: "user1",
-      imageid: 5,
+      entryid: 5,
       title: "Oh boy, here we go again :(",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -60,7 +60,7 @@ export default class DataStore {
 
     {
       userid: "user1",
-      imageid: 6,
+      entryid: 6,
       title: "My happy place",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -71,7 +71,7 @@ export default class DataStore {
 
     {
       userid: "user1",
-      imageid: 7,
+      entryid: 7,
       title: "She keeps growing more beautiful",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -82,7 +82,7 @@ export default class DataStore {
 
     {
       userid: "user1",
-      imageid: 8,
+      entryid: 8,
       title: "Prickly little thing",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -93,7 +93,7 @@ export default class DataStore {
 
     {
       userid: "user1",
-      imageid: 9,
+      entryid: 9,
       title: "These babies came home today",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -106,7 +106,7 @@ export default class DataStore {
 
     {
       userid: "user2",
-      imageid: 10,
+      entryid: 10,
       title: "She keeps on growing",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -117,7 +117,7 @@ export default class DataStore {
 
     {
       userid: "user2",
-      imageid: 11,
+      entryid: 11,
       title: "Look at her grow. I'm in awe",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -127,7 +127,7 @@ export default class DataStore {
     },
     {
       userid: "user2",
-      imageid: 13,
+      entryid: 13,
       title: "The smell is amazing",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
@@ -165,20 +165,3 @@ export default class DataStore {
     this.books.push(entry);
   }
 }
-
-// const users = [
-//   {
-//     id: "user1",
-//     username: "Carmen Carrera",
-//     email: "carmen@mail.com",
-//     password: "1234",
-//     image: require("../app/assets/user1.png"),
-//   },
-//   {
-//     id: "user2",
-//     username: "Tom Craig",
-//     email: "tc@mail.com",
-//     password: "1234",
-//     image: require("../app/assets/user2.png"),
-//   },
-// ];

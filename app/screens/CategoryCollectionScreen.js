@@ -37,7 +37,7 @@ function CategoryCollectionScreen({ route }) {
     <View style={styles.container}>
       <FlatList
         data={entries}
-        keyExtractor={(item) => item.imageid}
+        keyExtractor={(item) => item.entryid}
         renderItem={({ item }) => (
           <AppCard title={item.title} image={item.image} entry={item.entry} />
         )}
