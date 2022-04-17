@@ -213,14 +213,21 @@ function NewPostScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   imageButton: {
-    height: 220,
+    height: 150,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
   selectedImage: {
-    height: 220,
-    width: "100%",
+    alignSelf: "center",
+    height: 150,
+    width: "70%",
+    borderBottomEndRadius: 5,
+    borderBottomStartRadius: 5,
+  },
+  textInputContainer: {
+    alignSelf: "center",
+    width: "70%",
   },
 });
 
