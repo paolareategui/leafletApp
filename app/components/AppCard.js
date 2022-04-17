@@ -9,7 +9,11 @@ import AppText from "./AppText";
 function AppCard({ category, entry, image, title }) {
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.cardImage} resizeMode="cover" />
+      {isFinite(image) ? (
+        <Image source={image} style={styles.cardImage} />
+      ) : (
+        <Image source={{ uri: image }} style={styles.cardImage} />
+      )}
       <View style={styles.textContainer}>
         <View style={styles.TitleContainer}>
           <AppText style={styles.cardTitle}>{title}</AppText>

@@ -37,7 +37,7 @@ function NewPostScreen({ navigation }) {
     let result = await ImagePicker.launchImageLibraryAsync();
     console.log(result);
 
-    //If image is selected save it to state variable
+    //If image is selected handle it
     if (!result.cancelled) {
       handleChange(result.uri);
     }
@@ -51,21 +51,21 @@ function NewPostScreen({ navigation }) {
   const addEntry = (values) => {
     console.log("values sent to addEntry", values);
 
-    // let commonData = DataManager.getInstance();
-    // let user = commonData.getUserID();
-    // const entries = commonData.getEntries(user);
-    // const entryid = entries.length + 1;
-    // const newEntry = {
-    //   title: title,
-    //   category: category.label,
-    //   catid: category.catid,
-    //   entryid: entryid,
-    //   entry: entry,
-    //   userid: user,
-    //   image: selectedImage.path,
-    // };
-    // console.log(newEntry);
-    // commonData.addEntry(newEntry);
+    let commonData = DataStore.getInstance();
+    let user = commonData.getUserID();
+    const entries = commonData.getEntries(user);
+    const entryid = entries.length + 1;
+    const newEntry = {
+      title: values.title,
+      // category: category.label,
+      catid: values.catid,
+      entryid: entryid,
+      entry: values.entry,
+      userid: user,
+      image: values.image,
+    };
+    console.log("new entry", newEntry);
+    commonData.addEntry(newEntry);
   };
 
   //Yup schema for validation
@@ -222,8 +222,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: 150,
     width: "70%",
-    borderBottomEndRadius: 5,
-    borderBottomStartRadius: 5,
   },
   textInputContainer: {
     alignSelf: "center",
