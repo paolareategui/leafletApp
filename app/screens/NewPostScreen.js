@@ -12,10 +12,21 @@ import DataStore from "../data/DataStore";
 import AppErrorText from "../components/AppErrorText";
 import AppIcon from "../components/AppIcon";
 import AppText from "../components/AppText";
+import AppTextInput from "../components/AppTextInput";
 
-function NewPostScreen(props) {
+function NewPostScreen({ navigation }) {
+  //Category DATA
+  const categories = [
+    { catid: 1, text: "Succulents", icon: "spa" },
+    { catid: 2, text: "Flowers", icon: "flower" },
+    { catid: 3, text: "Hanging", icon: "globe-light" },
+    { catid: 4, text: "Herbs", icon: "barley" },
+    { catid: 5, text: "Foliage", icon: "sprout" },
+    { catid: 6, text: "Cactus", icon: "cactus" },
+  ];
+
   //Image picker setup
-  let pickImage = async () => {
+  let pickImage = async (handleChange) => {
     //Set up phone access permission
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -30,18 +41,47 @@ function NewPostScreen(props) {
 
     //If image is selected save it to state variable
     if (!result.cancelled) {
-      setSelectedImage({ path: result.uri });
+      handleChange(result.uri);
     }
   };
   //Image picker setup ends
 
   //State variables to be used to add new entries
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(false);
+
+  //Function to handle adding a new entry
+  const addEntry = (values) => {
+    console.log("values sent to addEntry", values);
+
+    console.log("image values inside addEntry", values.image);
+
+    // let commonData = DataManager.getInstance();
+    // let user = commonData.getUserID();
+    // const entries = commonData.getEntries(user);
+    // const entryid = entries.length + 1;
+    // const newEntry = {
+    //   title: title,
+    //   category: category.label,
+    //   catid: category.catid,
+    //   entryid: entryid,
+    //   entry: entry,
+    //   userid: user,
+    //   image: selectedImage.path,
+    // };
+    // console.log(newEntry);
+    // commonData.addEntry(newEntry);
+  };
+
+  //Yup schema for validation
+  const schema = Yup.object().shape({
+    title: Yup.string().required().label("Title"),
+    entry: Yup.string().required().max(240).label("Entry"),
+  });
 
   return (
     <View>
       {/* Display selected image and remove button conditionally */}
-      {selectedImage ? (
+      {/* {selectedImage ? (
         <View>
           <Image
             source={{ uri: selectedImage.path }}
@@ -50,7 +90,8 @@ function NewPostScreen(props) {
         </View>
       ) : (
         <View style={styles.imageButton}>
-          <TouchableOpacity onPress={pickImage} style={{}}>
+          <TouchableOpacity onPress={pickImage
+          } style={{}}>
             <AppIcon
               borderRadius={50}
               name="camera"
@@ -60,7 +101,105 @@ function NewPostScreen(props) {
             />
           </TouchableOpacity>
         </View>
-      )}
+      )} */}
+
+      {/* New Post form starts */}
+      <Formik
+        initialValues={{
+          title: "",
+          // category: "",
+          entry: "",
+          // image: "",
+          // userid: "",
+          // catid: "",
+          // entryid: "",
+        }}
+        onSubmit={(values, { resetForm }) => {
+          addEntry(values);
+          // resetForm();
+          alert("You'll be sent to home screen");
+        }}
+        validationSchema={schema}
+      >
+        {/* Variables to be passed to form */}
+        {({
+          errors,
+          handleChange,
+          handleSubmit,
+          setFieldTouched,
+          touched,
+          values,
+        }) => (
+          // Form input fields
+          <>
+            {/* Display selected image and remove button conditionally */}
+            {selectedImage ? (
+              <View>
+                <Image
+                  source={{ uri: values.image }}
+                  style={styles.selectedImage}
+                />
+              </View>
+            ) : (
+              <View style={styles.imageButton}>
+                <TouchableOpacity
+                  onPress={() => {
+                    pickImage(handleChange("image"));
+                    setSelectedImage(true);
+                  }}
+                  style={{}}
+                >
+                  <AppIcon
+                    borderRadius={50}
+                    name="camera"
+                    iconColor={AppColors.backgroundColor}
+                    size={50}
+                    backgroundColor={AppColors.primaryColor}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+
+            <View style={styles.textInputContainer}>
+              <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={true}
+                clearButtonMode="while-editing"
+                keyboardType="default"
+                onBlur={() => setFieldTouched("title")}
+                onChangeText={handleChange("title")}
+                placeholder="Title"
+                value={values.title || ""}
+              />
+
+              {/* Error message for email */}
+              {touched.title && <AppErrorText>{errors.title}</AppErrorText>}
+
+              <AppTextInput
+                autoCapitalize="none"
+                autoCorrect={true}
+                onBlur={() => setFieldTouched("entry")}
+                clearButtonMode="while-editing"
+                keyboardType="default"
+                multiline={true}
+                numberOfLines={40}
+                onChangeText={handleChange("entry")}
+                placeholder="Entry"
+                secureTextEntry
+                value={values.entry || ""}
+              />
+
+              {/* Error message for password */}
+              {touched.entry && <AppErrorText>{errors.entry}</AppErrorText>}
+            </View>
+
+            <View style={styles.buttonContainer}>
+              <AppButton title="Post" onPress={handleSubmit} />
+            </View>
+          </>
+        )}
+      </Formik>
+      {/* Login Form ends */}
     </View>
   );
 }
