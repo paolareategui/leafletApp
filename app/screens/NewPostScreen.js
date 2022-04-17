@@ -14,7 +14,6 @@ import AppErrorText from "../components/AppErrorText";
 import AppIcon from "../components/AppIcon";
 import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
-import AppPicker from "../components/AppPicker";
 
 function NewPostScreen({ navigation }) {
   const testdata = [
@@ -80,8 +79,6 @@ function NewPostScreen({ navigation }) {
     catid: Yup.string().required().label("Category"),
   });
 
-  const [selectedLanguage, setSelectedLanguage] = useState("");
-  console.log(selectedLanguage);
   return (
     <View>
       {/* New Post form starts */}
@@ -116,22 +113,21 @@ function NewPostScreen({ navigation }) {
           // Form input fields
           <>
             {/* Display selected image and remove button conditionally */}
-            {selectedImage ? (
-              <View>
-                <Image
-                  source={{ uri: values.image }}
-                  style={styles.selectedImage}
-                />
-              </View>
-            ) : (
-              <View style={styles.imageButton}>
-                <TouchableOpacity
-                  onPress={() => {
-                    pickImage(handleChange("image"));
-                    setSelectedImage(true);
-                  }}
-                  style={{}}
-                >
+            <TouchableOpacity
+              onPress={() => {
+                pickImage(handleChange("image"));
+                setSelectedImage(true);
+              }}
+            >
+              {selectedImage ? (
+                <View>
+                  <Image
+                    source={{ uri: values.image }}
+                    style={styles.selectedImage}
+                  />
+                </View>
+              ) : (
+                <View style={styles.imageButton}>
                   <AppIcon
                     borderRadius={50}
                     name="camera"
@@ -139,9 +135,9 @@ function NewPostScreen({ navigation }) {
                     size={50}
                     backgroundColor={AppColors.primaryColor}
                   />
-                </TouchableOpacity>
-              </View>
-            )}
+                </View>
+              )}
+            </TouchableOpacity>
 
             <View style={styles.textInputContainer}>
               <AppTextInput
@@ -194,7 +190,7 @@ function NewPostScreen({ navigation }) {
               </Picker>
 
               {/* Error message for the picker */}
-              {touched.title && <AppErrorText>{errors.catid}</AppErrorText>}
+              {touched.catid && <AppErrorText>{errors.catid}</AppErrorText>}
             </View>
 
             <View style={styles.buttonContainer}>
