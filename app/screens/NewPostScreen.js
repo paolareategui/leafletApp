@@ -46,7 +46,7 @@ function NewPostScreen({ navigation }) {
   };
   //Image picker setup ends
 
-  //State variables to be used to add new entries
+  //State variable to set visibility of selected image on and off
   const [selectedImage, setSelectedImage] = useState(false);
 
   //Function to handle adding a new entry
@@ -116,7 +116,8 @@ function NewPostScreen({ navigation }) {
         }}
         onSubmit={(values, { resetForm }) => {
           addEntry(values);
-          // resetForm();
+          resetForm();
+          setSelectedImage(false);
           alert("You'll be sent to home screen");
         }}
         validationSchema={schema}
