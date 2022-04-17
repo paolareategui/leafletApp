@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  KeyboardAvoidingView,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import { Formik } from "formik";
@@ -16,17 +23,6 @@ import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 
 function NewPostScreen({ navigation }) {
-  const testdata = [
-    {
-      label: "Adventure",
-      value: 1,
-      icon: "airplane-takeoff",
-      backgroundColor: "red",
-    },
-    { label: "Thriller", value: 2, backgroundColor: "blue" },
-    { label: "Fiction", value: 3, backgroundColor: "green" },
-  ];
-
   //Image picker setup
   let pickImage = async (handleChange) => {
     //Set up phone access permission
@@ -80,127 +76,138 @@ function NewPostScreen({ navigation }) {
   });
 
   return (
-    <View>
-      {/* New Post form starts */}
-      <Formik
-        initialValues={{
-          title: "",
-          // category: "",
-          entry: "",
-          // image: "",
-          // userid: "",
-          catid: "",
-          // entryid: "",
-        }}
-        onSubmit={(values, { resetForm }) => {
-          addEntry(values);
-          resetForm();
-          setSelectedImage(false);
-          alert("You'll be sent to home screen");
-        }}
-        validationSchema={schema}
-      >
-        {/* Variables to be passed to form */}
-        {({
-          errors,
-          handleChange,
-          handleSubmit,
-          setFieldValue,
-          setFieldTouched,
-          touched,
-          values,
-        }) => (
-          // Form input fields
-          <>
-            {/* Display selected image and remove button conditionally */}
-            <TouchableOpacity
-              onPress={() => {
-                pickImage(handleChange("image"));
-                setSelectedImage(true);
-              }}
-            >
-              {selectedImage ? (
+    //Scrollview allows the content to bounce back when it reaches the end of the content
+    <ScrollView>
+      {/* Everything inside KeyboardAvoidingView will move up when the keyboard
+      appears */}
+      <KeyboardAvoidingView keyboardVerticalOffset={40} behavior="position">
+        <View>
+          {/* New Post form starts */}
+          <Formik
+            initialValues={{
+              title: "",
+              // category: "",
+              entry: "",
+              // image: "",
+              // userid: "",
+              catid: "",
+              // entryid: "",
+            }}
+            onSubmit={(values, { resetForm }) => {
+              addEntry(values);
+              resetForm();
+              setSelectedImage(false);
+              alert("You'll be sent to home screen");
+            }}
+            validationSchema={schema}
+          >
+            {/* Variables to be passed to form */}
+            {({
+              errors,
+              handleChange,
+              handleSubmit,
+              setFieldValue,
+              setFieldTouched,
+              touched,
+              values,
+            }) => (
+              // Form input fields
+              <>
+                {/* Display selected image and remove button conditionally */}
+                <TouchableOpacity
+                  onPress={() => {
+                    pickImage(handleChange("image"));
+                    setSelectedImage(true);
+                  }}
+                >
+                  {selectedImage ? (
+                    <View>
+                      <Image
+                        source={{ uri: values.image }}
+                        style={styles.selectedImage}
+                      />
+                    </View>
+                  ) : (
+                    <View style={styles.imageButton}>
+                      <AppIcon
+                        borderRadius={50}
+                        name="camera"
+                        iconColor={AppColors.backgroundColor}
+                        size={50}
+                        backgroundColor={AppColors.primaryColor}
+                      />
+                    </View>
+                  )}
+                </TouchableOpacity>
+
+                <View style={styles.textInputContainer}>
+                  <AppTextInput
+                    autoCapitalize="none"
+                    autoCorrect={true}
+                    clearButtonMode="while-editing"
+                    keyboardType="default"
+                    onBlur={() => setFieldTouched("title")}
+                    onChangeText={handleChange("title")}
+                    placeholder="Title"
+                    value={values.title || ""}
+                  />
+
+                  {/* Error message for email */}
+                  {touched.title && <AppErrorText>{errors.title}</AppErrorText>}
+
+                  <AppTextInput
+                    autoCapitalize="none"
+                    autoCorrect={true}
+                    onBlur={() => setFieldTouched("entry")}
+                    clearButtonMode="while-editing"
+                    keyboardType="default"
+                    multiline={true}
+                    numberOfLines={40}
+                    onChangeText={handleChange("entry")}
+                    placeholder="Entry"
+                    secureTextEntry
+                    value={values.entry || ""}
+                  />
+
+                  {/* Error message for password */}
+                  {touched.entry && <AppErrorText>{errors.entry}</AppErrorText>}
+                </View>
+
+                {/* Select a category */}
                 <View>
-                  <Image
-                    source={{ uri: values.image }}
-                    style={styles.selectedImage}
-                  />
+                  <Picker
+                    itemStyle={{ fontSize: 14, marginTop: "0%" }}
+                    // passing value directly from formik
+                    selectedValue={values.catid}
+                    // changing value in formik
+                    onValueChange={(itemValue, itemIndex) => {
+                      setFieldValue("catid", itemValue);
+                      handleChange("catid");
+                    }}
+                  >
+                    <Picker.Item label="Category" value={null} />
+                    <Picker.Item label="Succulents" value={1} />
+                    <Picker.Item label="Flowers" value={2} />
+                    <Picker.Item label="Hanging" value={3} />
+                    <Picker.Item label="Herbs" value={4} />
+                    <Picker.Item label="Foliage" value={5} />
+                    <Picker.Item label="Cactus" value={6} />
+                  </Picker>
+
+                  {/* Error message for the picker */}
+                  {touched.catid && <AppErrorText>{errors.catid}</AppErrorText>}
                 </View>
-              ) : (
-                <View style={styles.imageButton}>
-                  <AppIcon
-                    borderRadius={50}
-                    name="camera"
-                    iconColor={AppColors.backgroundColor}
-                    size={50}
-                    backgroundColor={AppColors.primaryColor}
-                  />
+
+                <View style={styles.buttonContainer}>
+                  <AppButton title="Post" onPress={handleSubmit} />
                 </View>
-              )}
-            </TouchableOpacity>
-
-            <View style={styles.textInputContainer}>
-              <AppTextInput
-                autoCapitalize="none"
-                autoCorrect={true}
-                clearButtonMode="while-editing"
-                keyboardType="default"
-                onBlur={() => setFieldTouched("title")}
-                onChangeText={handleChange("title")}
-                placeholder="Title"
-                value={values.title || ""}
-              />
-
-              {/* Error message for email */}
-              {touched.title && <AppErrorText>{errors.title}</AppErrorText>}
-
-              <AppTextInput
-                autoCapitalize="none"
-                autoCorrect={true}
-                onBlur={() => setFieldTouched("entry")}
-                clearButtonMode="while-editing"
-                keyboardType="default"
-                multiline={true}
-                numberOfLines={40}
-                onChangeText={handleChange("entry")}
-                placeholder="Entry"
-                secureTextEntry
-                value={values.entry || ""}
-              />
-
-              {/* Error message for password */}
-              {touched.entry && <AppErrorText>{errors.entry}</AppErrorText>}
-            </View>
-
-            {/* Select a category */}
-            <View>
-              <Picker
-                // passing value directly from formik
-                selectedValue={values.catid}
-                // changing value in formik
-                onValueChange={(itemValue, itemIndex) => {
-                  setFieldValue("catid", itemValue);
-                  handleChange("catid");
-                }}
-              >
-                <Picker.Item label="Select your language" value={null} />
-                <Picker.Item label="Java" value={1} />
-                <Picker.Item label="Python" value={2} />
-                <Picker.Item label="Scala" value={3} />
-              </Picker>
-
-              {/* Error message for the picker */}
-              {touched.catid && <AppErrorText>{errors.catid}</AppErrorText>}
-            </View>
-
-            <View style={styles.buttonContainer}>
-              <AppButton title="Post" onPress={handleSubmit} />
-            </View>
-          </>
-        )}
-      </Formik>
-      {/* Login Form ends */}
-    </View>
+              </>
+            )}
+          </Formik>
+          {/* Login Form ends */}
+        </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
