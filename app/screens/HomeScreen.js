@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -14,8 +14,18 @@ const entries = (userid) => {
 };
 
 function HomeScreen({ navigation, route }) {
-  //Save the user entries into a variable
-  const userEntries = entries(route.params.paramID);
+  //Save the current user's entries
+  const [userEntries, setUserEntries] = useState("");
+
+  //Event listener
+  useEffect(
+    () =>
+      navigation.addListener("focus", () => {
+        const newEntries = entries(route.params.paramID);
+        setUserEntries(newEntries);
+      }),
+    [userEntries]
+  );
 
   return (
     <View styles={styles.container}>
@@ -45,11 +55,13 @@ function HomeScreen({ navigation, route }) {
       </View>
 
       {/*Dummy logout button takes user to login screen*/}
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <AppText style={{ fontWeight: "600", textAlign: "center" }}>
-          Logout
-        </AppText>
-      </TouchableOpacity>
+      <View style={styles.logoutButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <AppText style={{ fontWeight: "600", textAlign: "center" }}>
+            Logout
+          </AppText>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -64,7 +76,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   logoutButtonContainer: {
-    marginBottom: 10,
+    marginBottom: 40,
   },
 });
 
