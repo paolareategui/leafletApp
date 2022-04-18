@@ -13,6 +13,7 @@ function MoreInfoScreen({ route }) {
         image={route.params.paramAll.image}
         title={route.params.paramAll.title}
         entry={route.params.paramAll.entry}
+        entryid={route.params.paramAll.entryid}
       />
     </View>
   );

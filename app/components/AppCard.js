@@ -3,12 +3,13 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 
 import AppColors from "../config/AppColors";
-import AppIcon from "./AppIcon";
+import AppPostPicker from "./AppPostPicker";
 import AppText from "./AppText";
 
-function AppCard({ category, entry, image, title }) {
+function AppCard({ category, entry, entryid, image, title }) {
   return (
     <View style={styles.container}>
+      {/* Show the image whether the image path is a number or an uri */}
       {isFinite(image) ? (
         <Image source={image} style={styles.cardImage} />
       ) : (
@@ -17,12 +18,9 @@ function AppCard({ category, entry, image, title }) {
       <View style={styles.textContainer}>
         <View style={styles.TitleContainer}>
           <AppText style={styles.cardTitle}>{title}</AppText>
-          <AppIcon
-            style={{ height: 20, width: 20 }}
-            name="dots-horizontal"
-            size={30}
-            color={AppColors.secondaryColor}
-          />
+
+          {/* Display the post picker icon and pass the data */}
+          <AppPostPicker data={entryid} />
         </View>
         <AppText style={styles.cardEntry}>{entry}</AppText>
         <AppText style={styles.cardCategory}>{category}</AppText>

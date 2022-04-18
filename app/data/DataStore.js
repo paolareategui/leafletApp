@@ -164,4 +164,13 @@ export default class DataStore {
   addEntry(entry) {
     this.entries.push(entry);
   }
+
+  //Delete an entry
+  deleteEntry(id) {
+    //Find the object index
+    const entryIndex = this.entries.findIndex((entry) => entry.entryid === id);
+    console.log("The entry index", entryIndex);
+    //Remove object at given index
+    this.entries.splice(entryIndex, 1);
+  }
 }
