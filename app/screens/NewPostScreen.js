@@ -19,7 +19,6 @@ import AppColors from "../config/AppColors";
 import DataStore from "../data/DataStore";
 import AppErrorText from "../components/AppErrorText";
 import AppIcon from "../components/AppIcon";
-import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 
 function NewPostScreen({ navigation }) {
@@ -57,7 +56,6 @@ function NewPostScreen({ navigation }) {
     const entryid = entries.length + 1;
     const newEntry = {
       title: values.title,
-      // category: category.label,
       catid: values.catid,
       entryid: entryid,
       entry: values.entry,
@@ -86,12 +84,8 @@ function NewPostScreen({ navigation }) {
           <Formik
             initialValues={{
               title: "",
-              // category: "",
               entry: "",
-              // image: "",
-              // userid: "",
               catid: "",
-              // entryid: "",
             }}
             onSubmit={(values, { resetForm }) => {
               addEntry(values);
@@ -148,7 +142,7 @@ function NewPostScreen({ navigation }) {
                     keyboardType="default"
                     onBlur={() => setFieldTouched("title")}
                     onChangeText={handleChange("title")}
-                    placeholder="Title"
+                    placeholder="Write a title"
                     value={values.title || ""}
                   />
 
@@ -162,9 +156,9 @@ function NewPostScreen({ navigation }) {
                     clearButtonMode="while-editing"
                     keyboardType="default"
                     multiline={true}
-                    numberOfLines={40}
+                    numberOfLines={5}
                     onChangeText={handleChange("entry")}
-                    placeholder="Entry"
+                    placeholder="Write a short entry"
                     secureTextEntry
                     value={values.entry || ""}
                   />
