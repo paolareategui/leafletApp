@@ -162,6 +162,6 @@ export default class DataStore {
 
   //Post a new entry
   addEntry(entry) {
-    this.books.push(entry);
+    this.entries.push(entry);
   }
 }
