@@ -11,7 +11,10 @@ import DataStore from "../data/DataStore";
 //Pass the current user's ID and retrieve their corresponding entries
 const entries = (userid) => {
   let commonData = DataStore.getInstance();
-  return commonData.getEntries(userid);
+  const thedata = commonData.getEntries(userid);
+  //sort data from newest to oldest entries
+  const sortData = thedata.sort((a, b) => b.entryid - a.entryid);
+  return sortData;
 };
 
 function HomeScreen({ navigation, route }) {
