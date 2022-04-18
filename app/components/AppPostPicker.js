@@ -15,6 +15,7 @@ function AppPostPicker({ data }) {
   const deleteEntry = (id) => {
     let commonData = DataStore.getInstance();
     commonData.deleteEntry(id);
+    setModalVisible(!modalVisible);
   };
 
   //Set up modal state
