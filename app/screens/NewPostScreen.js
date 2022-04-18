@@ -48,8 +48,6 @@ function NewPostScreen({ navigation }) {
 
   //Function to handle adding a new entry
   const addEntry = (values) => {
-    console.log("values sent to addEntry", values);
-
     let commonData = DataStore.getInstance();
     let user = commonData.getUserID();
     const entries = commonData.getEntries(user);
@@ -91,7 +89,7 @@ function NewPostScreen({ navigation }) {
               addEntry(values);
               resetForm();
               setSelectedImage(false);
-              alert("You'll be sent to home screen");
+              navigation.navigate("Home");
             }}
             validationSchema={schema}
           >
