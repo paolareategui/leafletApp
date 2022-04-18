@@ -5,6 +5,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import AppButton from "../components/AppButton";
 import AppImageCollection from "../components/AppImageCollection";
 import AppText from "../components/AppText";
+import AppColors from "../config/AppColors";
 import DataStore from "../data/DataStore";
 
 //Pass the current user's ID and retrieve their corresponding entries
@@ -45,6 +46,21 @@ function HomeScreen({ navigation, route }) {
         <AppText>{route.params.paramEmail}</AppText>
       </View>
 
+      {/*Dummy logout button takes user to login screen*/}
+      <View style={styles.logoutButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <AppText
+            style={{
+              textAlign: "center",
+              fontSize: 11,
+              color: "#777",
+            }}
+          >
+            Logout
+          </AppText>
+        </TouchableOpacity>
+      </View>
+
       {/* User photo collection view */}
       <View style={styles.userCollection}>
         <AppImageCollection
@@ -53,11 +69,16 @@ function HomeScreen({ navigation, route }) {
           navigation={navigation}
         />
       </View>
-
       {/*Dummy logout button takes user to login screen*/}
-      <View style={styles.logoutButtonContainer}>
+      <View style={{ flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <AppText style={{ fontWeight: "600", textAlign: "center" }}>
+          <AppText
+            style={{
+              textAlign: "center",
+              fontSize: 11,
+              color: "#777",
+            }}
+          >
             Logout
           </AppText>
         </TouchableOpacity>
@@ -70,13 +91,13 @@ const styles = StyleSheet.create({
   container: {},
   userProfile: {
     alignItems: "center",
-    paddingVertical: 40,
+    paddingTop: 40,
   },
   userCollection: {
-    marginBottom: 30,
+    marginBottom: 500,
   },
   logoutButtonContainer: {
-    marginBottom: 40,
+    marginBottom: 30,
   },
 });
 
