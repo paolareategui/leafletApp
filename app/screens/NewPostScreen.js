@@ -146,7 +146,7 @@ function NewPostScreen({ navigation }) {
                     value={values.title || ""}
                   />
 
-                  {/* Error message for email */}
+                  {/* Error message for title */}
                   {touched.title && <AppErrorText>{errors.title}</AppErrorText>}
 
                   <AppTextInput
@@ -161,9 +161,10 @@ function NewPostScreen({ navigation }) {
                     placeholder="Write a short entry"
                     secureTextEntry
                     value={values.entry || ""}
+                    height={60}
                   />
 
-                  {/* Error message for password */}
+                  {/* Error message for entry */}
                   {touched.entry && <AppErrorText>{errors.entry}</AppErrorText>}
                 </View>
 
@@ -179,7 +180,7 @@ function NewPostScreen({ navigation }) {
                       handleChange("catid");
                     }}
                   >
-                    <Picker.Item label="Category" value={null} />
+                    <Picker.Item label="Choose a category" value={null} />
                     <Picker.Item label="Succulents" value={1} />
                     <Picker.Item label="Flowers" value={2} />
                     <Picker.Item label="Hanging" value={3} />
