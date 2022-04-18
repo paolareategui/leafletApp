@@ -2,27 +2,27 @@
 //Accepts iconComponent (AppIcon), onPress and a title
 import React from "react";
 
-import { StyleSheet, TouchableHighlight, View } from "react-native";
+import { StyleSheet, Pressable, View } from "react-native";
 
 import AppColors from "../config/AppColors";
 import AppIcon from "./AppIcon";
 import AppText from "./AppText";
 
-function AppPickerItem({ iconComponent, onPress, title }) {
+function AppPickerItem({ iconComponent, onPress, label }) {
   return (
-    <TouchableHighlight onPress={onPress} underlayColor={AppColors.accentColor}>
+    <Pressable onPress={onPress}>
       <View style={styles.container}>
-        {title && <AppText style={styles.listText}> {title}</AppText>}
+        {label && <AppText>{label}</AppText>}
         {iconComponent}
       </View>
-    </TouchableHighlight>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
+    borderBottomColor: "#CCC",
+    borderBottomWidth: 1,
   },
 });
 
