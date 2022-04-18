@@ -11,15 +11,10 @@ import {
   View,
 } from "react-native";
 
-import AppCard from "./AppCard";
 import AppColors from "../config/AppColors";
 import AppText from "./AppText";
 
 function AppImageCollection({ data, navigation, numCols }) {
-  //Set up modal visibility and data
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalData, setModalData] = useState("");
-
   return (
     <View>
       {/* Displays user images */}
@@ -43,15 +38,27 @@ function AppImageCollection({ data, navigation, numCols }) {
                   })
                 }
               >
-                <Image
-                  source={item.image}
-                  style={{
-                    width: 115,
-                    height: 115,
-                    margin: 4,
-                    borderRadius: 10,
-                  }}
-                />
+                {isFinite(item.image) ? (
+                  <Image
+                    source={item.image}
+                    style={{
+                      width: 115,
+                      height: 115,
+                      margin: 4,
+                      borderRadius: 10,
+                    }}
+                  />
+                ) : (
+                  <Image
+                    source={{ uri: item.image }}
+                    style={{
+                      width: 115,
+                      height: 115,
+                      margin: 4,
+                      borderRadius: 10,
+                    }}
+                  />
+                )}
               </TouchableOpacity>
             </View>
           )}
