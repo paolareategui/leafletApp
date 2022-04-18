@@ -39,7 +39,12 @@ function CategoryCollectionScreen({ route }) {
         data={entries}
         keyExtractor={(item) => item.entryid}
         renderItem={({ item }) => (
-          <AppCard title={item.title} image={item.image} entry={item.entry} />
+          <AppCard
+            entryid={item.entryid}
+            title={item.title}
+            image={item.image}
+            entry={item.entry}
+          />
         )}
       />
     </View>
