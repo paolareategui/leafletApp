@@ -27,7 +27,7 @@ function AppImageCollection({ data, navigation, numCols }) {
         <FlatList
           numColumns={numCols}
           data={data}
-          keyExtractor={(item) => item.imageid}
+          keyExtractor={(item) => item.entryid}
           ListEmptyComponent={
             //Display this message if user images are not available
             <AppText style={{ textAlign: "center" }}>
