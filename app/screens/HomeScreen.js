@@ -17,6 +17,7 @@ const entries = (userid) => {
   return sortData;
 };
 
+//Function begins
 function HomeScreen({ navigation, route }) {
   //Save the current user's entries
   const [userEntries, setUserEntries] = useState("");
@@ -31,6 +32,19 @@ function HomeScreen({ navigation, route }) {
     [userEntries]
   );
 
+  //Workaround: react native does not recognize dynamic image paths from Json file :(
+  const findTheImage = () => {
+    if (route.params.paramID === "user1") {
+      return require("../assets/user1.png");
+    } else if (route.params.paramID === "user2") {
+      return require("../assets/user2.png");
+    } else {
+      return require("../assets/user0.png");
+    }
+  };
+
+  const imgVariable = findTheImage();
+
   return (
     <View styles={styles.container}>
       {/* User profile view */}
@@ -41,7 +55,7 @@ function HomeScreen({ navigation, route }) {
             height: 90,
             borderRadius: 50,
           }}
-          source={route.params.paramImage}
+          source={imgVariable}
         />
         <AppText style={{ fontWeight: "bold", marginTop: 15 }}>
           {route.params.paramName}

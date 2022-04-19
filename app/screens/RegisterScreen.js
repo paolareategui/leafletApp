@@ -4,21 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import AppErrorText from "../components/AppErrorText";
-
-//Yup schema for validation
-const schema = Yup.object().shape({
-  username: Yup.string().required().min(2).label("username"),
-  email: Yup.string().required().email().label("Email"),
-  password: Yup.string().required().min(4).max(8).label("Password"),
-});
-
-// //Validate that user exists
-// const validateUser = ({ email, password }) => {
-//   return (
-//     users.filter((user) => user.email === email && user.password === password)
-//       .length > 0
-//   );
-// };
+import users from "../data/users.json";
 
 import {
   KeyboardAvoidingView,
@@ -33,7 +19,38 @@ import AppCoverImage from "../components/AppCoverImage";
 import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 
+//Yup schema for validation
+const schema = Yup.object().shape({
+  username: Yup.string().required().min(2).label("username"),
+  email: Yup.string().required().email().label("Email"),
+  password: Yup.string().required().min(4).max(8).label("Password"),
+});
+
 function RegisterScreen({ navigation }) {
+  //Check if userid already exists
+  const checkUser = ({ email }) => {
+    return users.filter((user) => user.email === email).length > 0;
+  };
+  //Add new user instance
+  const addUser = ({ email, password, username }) => {
+    //Check if user already exists
+    const userExists = checkUser({ email });
+    console.log("Does user exist?", userExists);
+
+    //Do accordinly
+    if (userExists) {
+      alert("You already have an account");
+    } else {
+      const newUser = {
+        userid: email,
+        username: username,
+        email: email,
+        password: password,
+      };
+      users.push(newUser);
+    }
+  };
+
   return (
     //Everything inside KeyboardAvoidingView will move up when the keyboard appears
     <KeyboardAvoidingView keyboardVerticalOffset={100} behavior="position">
@@ -46,6 +63,7 @@ function RegisterScreen({ navigation }) {
       <Formik
         initialValues={{ username: "", email: "", password: "" }}
         onSubmit={(values, { resetForm }) => {
+          addUser(values);
           resetForm({});
           console.log(values);
         }}
