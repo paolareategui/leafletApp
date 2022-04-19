@@ -3,26 +3,9 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import users from "../data/users.json";
 import DataStore from "../data/DataStore";
 import AppErrorText from "../components/AppErrorText";
-
-//Test user data
-const users = [
-  {
-    userid: "user1",
-    username: "Carmen Carrera",
-    email: "c@m.com",
-    password: "1234",
-    image: require("../assets/user1.png"),
-  },
-  {
-    userid: "user2",
-    username: "Tom Craig",
-    email: "tc@mail.com",
-    password: "1234",
-    image: require("../assets/user2.png"),
-  },
-];
 
 //Yup schema for validation
 const schema = Yup.object().shape({
