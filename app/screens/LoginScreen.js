@@ -4,25 +4,26 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import DataStore from "../data/DataStore";
+import UserDataStore from "../data/UserDataStore";
 import AppErrorText from "../components/AppErrorText";
 
 //Test user data
-const users = [
-  {
-    userid: "user1",
-    username: "Carmen Carrera",
-    email: "c@m.com",
-    password: "1234",
-    image: require("../assets/user1.png"),
-  },
-  {
-    userid: "user2",
-    username: "Tom Craig",
-    email: "tc@mail.com",
-    password: "1234",
-    image: require("../assets/user2.png"),
-  },
-];
+// const users = [
+//   {
+//     userid: "user1",
+//     username: "Carmen Carrera",
+//     email: "c@m.com",
+//     password: "1234",
+//     image: require("../assets/user1.png"),
+//   },
+//   {
+//     userid: "user2",
+//     username: "Tom Craig",
+//     email: "tc@mail.com",
+//     password: "1234",
+//     image: require("../assets/user2.png"),
+//   },
+// ];
 
 //Yup schema for validation
 const schema = Yup.object().shape({
@@ -30,20 +31,33 @@ const schema = Yup.object().shape({
   password: Yup.string().required().min(4).max(8).label("Password"),
 });
 
-//Validate that user exists
+//Validate the user login details
 const validateUser = ({ email, password }) => {
-  return (
-    users.filter((user) => user.email === email && user.password === password)
-      .length > 0
-  );
+  let commonData = UserDataStore.getInstance();
+  // let user = commonData.getUserID();
+  return commonData.validate(email, password);
 };
 
-//Get user ID from dummy data using email address as unique identificator
+// const user = getUserDetails();
+
+//Validate that user exists
+// const validateUser = ({ email, password }) => {
+//   return (
+//     users.filter((user) => user.email === email && user.password === password)
+//       .length > 0
+//   );
+// };
+
+//Get user details from User Data Store using email address as unique identifier
 const getUser = ({ email }) => {
-  return users.find((user) => user.email === email);
+  let commonData = UserDataStore.getInstance();
+  return commonData.getUser(email);
 };
+// const getUser = ({ email }) => {
+//   return users.find((user) => user.email === email);
+// };
 
-//Generate an instance of the user to pass as parameters
+//Set user id in Data Store
 const createUser = ({ email }) => {
   let commonData = DataStore.getInstance();
   let userid = getUser({ email }).userid;
