@@ -21,6 +21,7 @@ import AppText from "./app/components/AppText";
 import AppTextInput from "./app/components/AppTextInput";
 import AppColors from "./app/config/AppColors";
 import LoginScreen from "./app/screens/LoginScreen";
+import NewPostScreen from "./app/screens/NewPostScreen";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 
 import AuthNavigator from "./app/navigation/AuthNavigator";
