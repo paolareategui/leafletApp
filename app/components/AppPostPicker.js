@@ -8,7 +8,7 @@ import AppIcon from "./AppIcon";
 import AppPickerItem from "./AppPickerItem";
 import AppText from "./AppText";
 
-function AppPostPicker({ data, navigation }) {
+function AppPostPicker({ data, navigation, entry, image, title }) {
   console.log("Data sent to postpicker ", data);
 
   //Handle deleting an entry
@@ -24,7 +24,11 @@ function AppPostPicker({ data, navigation }) {
   const updateEntry = (id) => {
     console.log("update entry triggered", id);
     setModalVisible(!modalVisible);
-    navigation.replace("Edit post");
+    navigation.replace("Edit post", {
+      paramTitle: title,
+      paramEntry: entry,
+      paramImage: image,
+    });
   };
 
   //Set up modal state

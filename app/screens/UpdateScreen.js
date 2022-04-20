@@ -21,7 +21,8 @@ import AppErrorText from "../components/AppErrorText";
 import AppIcon from "../components/AppIcon";
 import AppTextInput from "../components/AppTextInput";
 
-function UpdateScreen({ navigation }) {
+function UpdateScreen({ navigation, route }) {
+  console.log(route);
   //Image picker setup
   let pickImage = async (handleChange) => {
     //Set up phone access permission
@@ -70,7 +71,7 @@ function UpdateScreen({ navigation }) {
     entry: Yup.string().required().max(240).label("Entry"),
     catid: Yup.string().required().label("Category"),
   });
-
+  console.log(route.params.paramImage);
   return (
     //Scrollview allows the content to bounce back when it reaches the end of the content
     <ScrollView>
@@ -81,9 +82,10 @@ function UpdateScreen({ navigation }) {
           {/* New Post form starts */}
           <Formik
             initialValues={{
-              title: "",
-              entry: "",
+              title: route.params.paramTitle,
+              entry: route.params.paramEntry,
               catid: "",
+              image: route.params.paramImage,
             }}
             onSubmit={(values, { resetForm }) => {
               addEntry(values);
@@ -110,23 +112,41 @@ function UpdateScreen({ navigation }) {
                   onPress={() => {
                     pickImage(handleChange("image"));
                     setSelectedImage(true);
+                    console.log("selectedImage", selectedImage);
                   }}
                 >
                   {selectedImage ? (
+                    // <View>
+                    //   <Image
+                    //     source={{ uri: values.image }}
+                    //     style={styles.selectedImage}
+                    //   />
+                    // </View>
                     <View>
-                      <Image
-                        source={{ uri: values.image }}
-                        style={styles.selectedImage}
-                      />
+                      {isFinite(values.image) ? (
+                        <Image
+                          source={values.image}
+                          style={styles.selectedImage}
+                        />
+                      ) : (
+                        <Image
+                          source={{ uri: values.image }}
+                          style={styles.selectedImage}
+                        />
+                      )}
                     </View>
                   ) : (
                     <View style={styles.imageButton}>
-                      <AppIcon
+                      {/* <AppIcon
                         borderRadius={50}
                         name="camera"
                         iconColor={AppColors.backgroundColor}
                         size={50}
                         backgroundColor={AppColors.primaryColor}
+                      /> */}
+                      <Image
+                        source={route.params.paramImage}
+                        style={styles.selectedImage}
                       />
                     </View>
                   )}
