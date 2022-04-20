@@ -62,7 +62,6 @@ function UpdateScreen({ navigation, route }) {
       image: values.image,
     };
     commonData.addEntry(newEntry);
-    // navigation.push("Post");
   };
 
   //Yup schema for validation
@@ -90,7 +89,7 @@ function UpdateScreen({ navigation, route }) {
               addEntry(values);
               resetForm();
               setSelectedImage(false);
-              navigation.navigate("Home");
+              navigation.pop();
             }}
             validationSchema={schema}
           >
