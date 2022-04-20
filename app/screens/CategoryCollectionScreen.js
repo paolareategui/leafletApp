@@ -26,7 +26,7 @@ const getSelectedCategory = (catid) => {
   return entries.filter((category) => category.catid === catid);
 };
 
-function CategoryCollectionScreen({ route }) {
+function CategoryCollectionScreen({ route, navigation }) {
   //Use routed parameter to fetch entries matching the category id
   const entries = getSelectedCategory(route.params.paramCatID);
 
@@ -44,6 +44,7 @@ function CategoryCollectionScreen({ route }) {
             title={item.title}
             image={item.image}
             entry={item.entry}
+            navigation={navigation}
           />
         )}
       />

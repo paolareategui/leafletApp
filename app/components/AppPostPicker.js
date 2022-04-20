@@ -16,6 +16,7 @@ function AppPostPicker({ data, navigation }) {
     let commonData = DataStore.getInstance();
     commonData.deleteEntry(id);
     setModalVisible(!modalVisible);
+    alert("Your entry was deleted");
     navigation.pop(1);
   };
 
