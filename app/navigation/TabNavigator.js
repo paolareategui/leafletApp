@@ -31,7 +31,7 @@ const TabNavigator = () => (
     />
 
     <Tab.Screen
-      name="Post"
+      name="New post"
       component={NewPostScreen}
       options={{
         tabBarIcon: () => (
