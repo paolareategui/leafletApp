@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryCollectionScreen from "../screens/CategoryCollectionScreen";
+import UpdateScreen from "../screens/UpdateScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,9 @@ const CategoriesNavigator = () => (
         component={CategoriesScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="Edit post" component={UpdateScreen} />
     </Stack.Group>
+
     <Stack.Group screenOptions={{ presentation: "modal" }}>
       <Stack.Screen
         name="Category Collection"

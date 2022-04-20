@@ -24,7 +24,7 @@ function AppPostPicker({ data, navigation }) {
   const updateEntry = (id) => {
     console.log("update entry triggered", id);
     setModalVisible(!modalVisible);
-    console.log(navigation);
+    navigation.replace("Edit post");
   };
 
   //Set up modal state
@@ -37,7 +37,7 @@ function AppPostPicker({ data, navigation }) {
           {/* Delete */}
           <AppPickerItem label="Delete" onPress={() => deleteEntry(data)} />
           {/* Update */}
-          <AppPickerItem label="Update" onPress={() => updateEntry(data)} />
+          <AppPickerItem label="Edit" onPress={() => updateEntry(data)} />
           {/* Cancel */}
           <Pressable
             style={[styles.button, styles.buttonClose]}

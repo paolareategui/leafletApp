@@ -32,7 +32,7 @@ function AppImageCollection({ data, navigation, numCols }) {
           <View>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("More Info", {
+                navigation.navigate("Post", {
                   paramAll: item,
                 })
               }
