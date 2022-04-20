@@ -47,7 +47,11 @@ function RegisterScreen({ navigation }) {
         email: email,
         password: password,
       };
+      //Add new user to user array
       users.push(newUser);
+      //Message and redirection for new user
+      alert("Thanks for registering!");
+      navigation.navigate("Login");
     }
   };
 
