@@ -22,7 +22,6 @@ import AppIcon from "../components/AppIcon";
 import AppTextInput from "../components/AppTextInput";
 
 function UpdateScreen({ navigation, route }) {
-  console.log(route);
   //Image picker setup
   let pickImage = async (handleChange) => {
     //Set up phone access permission
@@ -52,7 +51,8 @@ function UpdateScreen({ navigation, route }) {
     let commonData = DataStore.getInstance();
     let user = commonData.getUserID();
     const entries = commonData.getEntries(user);
-    const entryid = entries.length + 1;
+    const entryid = route.params.paramEntryId;
+    commonData.deleteEntry(route.params.paramEntryId);
     const newEntry = {
       title: values.title,
       catid: values.catid,
@@ -61,8 +61,8 @@ function UpdateScreen({ navigation, route }) {
       userid: user,
       image: values.image,
     };
-    console.log("new entry", newEntry);
     commonData.addEntry(newEntry);
+    // navigation.push("Post");
   };
 
   //Yup schema for validation
@@ -71,7 +71,6 @@ function UpdateScreen({ navigation, route }) {
     entry: Yup.string().required().max(240).label("Entry"),
     catid: Yup.string().required().label("Category"),
   });
-  console.log(route.params.paramImage);
   return (
     //Scrollview allows the content to bounce back when it reaches the end of the content
     <ScrollView>
@@ -79,7 +78,7 @@ function UpdateScreen({ navigation, route }) {
       appears */}
       <KeyboardAvoidingView keyboardVerticalOffset={40} behavior="position">
         <View>
-          {/* New Post form starts */}
+          {/* Edit Post form starts */}
           <Formik
             initialValues={{
               title: route.params.paramTitle,
@@ -107,21 +106,14 @@ function UpdateScreen({ navigation, route }) {
             }) => (
               // Form input fields
               <>
-                {/* Display selected image and remove button conditionally */}
+                {/* Display current image or new image conditionally */}
                 <TouchableOpacity
                   onPress={() => {
                     pickImage(handleChange("image"));
                     setSelectedImage(true);
-                    console.log("selectedImage", selectedImage);
                   }}
                 >
                   {selectedImage ? (
-                    // <View>
-                    //   <Image
-                    //     source={{ uri: values.image }}
-                    //     style={styles.selectedImage}
-                    //   />
-                    // </View>
                     <View>
                       {isFinite(values.image) ? (
                         <Image
@@ -137,13 +129,6 @@ function UpdateScreen({ navigation, route }) {
                     </View>
                   ) : (
                     <View style={styles.imageButton}>
-                      {/* <AppIcon
-                        borderRadius={50}
-                        name="camera"
-                        iconColor={AppColors.backgroundColor}
-                        size={50}
-                        backgroundColor={AppColors.primaryColor}
-                      /> */}
                       <Image
                         source={route.params.paramImage}
                         style={styles.selectedImage}
@@ -217,7 +202,7 @@ function UpdateScreen({ navigation, route }) {
               </>
             )}
           </Formik>
-          {/* Login Form ends */}
+          {/* Edit Post Form ends */}
         </View>
       </KeyboardAvoidingView>
     </ScrollView>

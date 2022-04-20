@@ -9,8 +9,6 @@ import AppPickerItem from "./AppPickerItem";
 import AppText from "./AppText";
 
 function AppPostPicker({ data, navigation, entry, image, title }) {
-  console.log("Data sent to postpicker ", data);
-
   //Handle deleting an entry
   const deleteEntry = (id) => {
     let commonData = DataStore.getInstance();
@@ -28,6 +26,7 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
       paramTitle: title,
       paramEntry: entry,
       paramImage: image,
+      paramEntryId: data,
     });
   };
 
