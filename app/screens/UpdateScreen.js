@@ -129,10 +129,17 @@ function UpdateScreen({ navigation, route }) {
                     </View>
                   ) : (
                     <View style={styles.imageButton}>
-                      <Image
-                        source={route.params.paramImage}
-                        style={styles.selectedImage}
-                      />
+                      {isFinite(values.image) ? (
+                        <Image
+                          source={route.params.paramImage}
+                          style={styles.selectedImage}
+                        />
+                      ) : (
+                        <Image
+                          source={{ uri: route.params.paramImage }}
+                          style={styles.selectedImage}
+                        />
+                      )}
                     </View>
                   )}
                 </TouchableOpacity>
