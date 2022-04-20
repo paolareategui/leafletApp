@@ -16,7 +16,6 @@ const CategoriesNavigator = () => (
         component={CategoriesScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Edit post" component={UpdateScreen} />
     </Stack.Group>
 
     <Stack.Group screenOptions={{ presentation: "modal" }}>
@@ -24,6 +23,7 @@ const CategoriesNavigator = () => (
         name="Category Collection"
         component={CategoryCollectionScreen}
       />
+      <Stack.Screen name="Edit post" component={UpdateScreen} />
     </Stack.Group>
   </Stack.Navigator>
 );
