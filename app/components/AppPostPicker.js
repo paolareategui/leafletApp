@@ -18,6 +18,11 @@ function AppPostPicker({ data }) {
     setModalVisible(!modalVisible);
   };
 
+  //Handle updating an entry
+  const updateEntry = (id) => {
+    console.log("update entry triggered", id);
+  };
+
   //Set up modal state
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -25,8 +30,11 @@ function AppPostPicker({ data }) {
       {/* Set up modal view */}
       <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <View style={styles.modalView}>
-          {/* Display post picker */}
+          {/* Delete */}
           <AppPickerItem label="Delete" onPress={() => deleteEntry(data)} />
+          {/* Update */}
+          <AppPickerItem label="Update" onPress={() => updateEntry(data)} />
+          {/* Cancel */}
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => setModalVisible(!modalVisible)}
