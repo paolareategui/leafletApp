@@ -8,7 +8,7 @@ import AppIcon from "./AppIcon";
 import AppPickerItem from "./AppPickerItem";
 import AppText from "./AppText";
 
-function AppPostPicker({ data }) {
+function AppPostPicker({ data, navigation }) {
   console.log("Data sent to postpicker ", data);
 
   //Handle deleting an entry
@@ -16,11 +16,14 @@ function AppPostPicker({ data }) {
     let commonData = DataStore.getInstance();
     commonData.deleteEntry(id);
     setModalVisible(!modalVisible);
+    navigation.pop(1);
   };
 
   //Handle updating an entry
   const updateEntry = (id) => {
     console.log("update entry triggered", id);
+    setModalVisible(!modalVisible);
+    console.log(navigation);
   };
 
   //Set up modal state

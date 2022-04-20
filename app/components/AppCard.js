@@ -6,7 +6,7 @@ import AppColors from "../config/AppColors";
 import AppPostPicker from "./AppPostPicker";
 import AppText from "./AppText";
 
-function AppCard({ category, entry, entryid, image, title }) {
+function AppCard({ category, entry, entryid, image, navigation, title }) {
   return (
     <View style={styles.container}>
       {/* Show the image whether the image path is a number or an uri */}
@@ -20,7 +20,7 @@ function AppCard({ category, entry, entryid, image, title }) {
           <AppText style={styles.cardTitle}>{title}</AppText>
 
           {/* Display the post picker icon and pass the data */}
-          <AppPostPicker data={entryid} />
+          <AppPostPicker data={entryid} navigation={navigation} />
         </View>
         <AppText style={styles.cardEntry}>{entry}</AppText>
         <AppText style={styles.cardCategory}>{category}</AppText>

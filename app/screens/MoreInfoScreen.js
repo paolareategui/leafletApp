@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 
 import AppCard from "../components/AppCard";
 
-function MoreInfoScreen({ route }) {
+function MoreInfoScreen({ route, navigation }) {
   console.log(route.params.paramAll);
 
   return (
@@ -14,6 +14,7 @@ function MoreInfoScreen({ route }) {
         title={route.params.paramAll.title}
         entry={route.params.paramAll.entry}
         entryid={route.params.paramAll.entryid}
+        navigation={navigation}
       />
     </View>
   );
