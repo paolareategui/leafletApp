@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   bodyContainer: {},
   cardImage: {
     height: 220,
+    width: "100%",
   },
   cardTitle: {
     fontWeight: "700",
