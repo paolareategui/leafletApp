@@ -6,7 +6,7 @@ import AppColors from "../config/AppColors";
 import AppPostPicker from "./AppPostPicker";
 import AppText from "./AppText";
 
-function AppCard({ category, date, entry, entryid, image, navigation, title }) {
+function AppCard({ date, entry, entryid, image, navigation, title }) {
   console.log(entry);
   return (
     <View style={styles.container}>
@@ -16,7 +16,7 @@ function AppCard({ category, date, entry, entryid, image, navigation, title }) {
       ) : (
         <Image source={{ uri: image }} style={styles.cardImage} />
       )}
-      <View style={styles.textContainer}>
+      <View style={styles.entryDataContainer}>
         <View style={styles.TitleContainer}>
           <AppText style={styles.cardTitle}>{title}</AppText>
 
@@ -29,9 +29,10 @@ function AppCard({ category, date, entry, entryid, image, navigation, title }) {
             navigation={navigation}
           />
         </View>
-        <AppText style={styles.cardEntry}>{entry}</AppText>
-        <AppText style={styles.cardCategory}>{category}</AppText>
-        <AppText style={styles.date}>{date}</AppText>
+        <View style={styles.bodyContainer}>
+          <AppText style={styles.cardEntry}>{entry}</AppText>
+          <AppText style={styles.date}>{date}</AppText>
+        </View>
       </View>
     </View>
   );
@@ -45,21 +46,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
     overflow: "hidden",
-    backgroundColor: "red",
   },
+  bodyContainer: {},
   cardImage: {
     height: 220,
-    width: "100%",
   },
   cardTitle: {
     fontWeight: "700",
     marginBottom: 5,
     paddingTop: 2,
   },
-  date: {
-    alignSelf: "baseline",
-  },
-  textContainer: {
+  date: { paddingTop: 10, fontSize: 12 },
+  entryDataContainer: {
     paddingHorizontal: 10,
   },
   TitleContainer: {
