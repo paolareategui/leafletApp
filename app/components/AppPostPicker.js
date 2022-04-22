@@ -66,7 +66,7 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
         style={{
           height: 1,
           width: "100%",
-          backgroundColor: "#999",
+          backgroundColor: "#CCC",
         }}
       ></View>
     );
@@ -114,11 +114,11 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
 
 const styles = StyleSheet.create({
   modalView: {
-    marginTop: 150,
+    marginTop: 130,
     marginHorizontal: "30%",
-    backgroundColor: AppColors.accentColor,
-    borderRadius: 10,
-    shadowColor: "#000",
+    backgroundColor: AppColors.white,
+    borderRadius: 5,
+    shadowColor: AppColors.primaryColor,
     shadowOffset: {
       width: 0,
       height: 2,
