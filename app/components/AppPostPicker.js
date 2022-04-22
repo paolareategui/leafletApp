@@ -1,21 +1,41 @@
+//Component that contains delete and edit options for posts
 import React, { useState } from "react";
 
-import { Modal, StyleSheet, Pressable, View } from "react-native";
+import {
+  FlatList,
+  Modal,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import AppColors from "../config/AppColors";
-import DataStore from "../data/DataStore";
 import AppIcon from "./AppIcon";
 import AppPickerItem from "./AppPickerItem";
-import AppText from "./AppText";
+import DataStore from "../data/DataStore";
 
 function AppPostPicker({ data, navigation, entry, image, title }) {
-  //Handle deleting an entry
-  const deleteEntry = (id) => {
-    let commonData = DataStore.getInstance();
-    commonData.deleteEntry(id);
-    setModalVisible(!modalVisible);
-    alert("Your entry was deleted");
-    navigation.pop(1);
+  //Small array of options for flatlist
+  const postOptions = [
+    { id: 1, name: "Edit" },
+    { id: 2, name: "Delete" },
+    { id: 3, name: "Cancel" },
+  ];
+
+  //Handle picker selection
+  const handleSelection = (selection) => {
+    switch (selection) {
+      case "Edit":
+        selection = "Edit";
+        updateEntry(data);
+        break;
+      case "Delete":
+        deleteEntry(data);
+        break;
+      case "Cancel":
+        setModalVisible(!modalVisible);
+        break;
+    }
   };
 
   //Handle updating an entry
@@ -30,6 +50,28 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
     });
   };
 
+  //Handle deleting an entry
+  const deleteEntry = (id) => {
+    let commonData = DataStore.getInstance();
+    commonData.deleteEntry(id);
+    setModalVisible(!modalVisible);
+    alert("Your entry was deleted");
+    navigation.pop(1);
+  };
+
+  //Separate the flatlist with lines
+  const flatlistSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "100%",
+          backgroundColor: "#999",
+        }}
+      ></View>
+    );
+  };
+
   //Set up modal state
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -37,23 +79,23 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
       {/* Set up modal view */}
       <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <View style={styles.modalView}>
-          {/* Delete */}
-          <AppPickerItem label="Delete" onPress={() => deleteEntry(data)} />
-          {/* Update */}
-          <AppPickerItem label="Edit" onPress={() => updateEntry(data)} />
-          {/* Cancel */}
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
-            <AppText style={{ color: AppColors.black }}>Cancel</AppText>
-          </Pressable>
+          <FlatList
+            data={postOptions}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <AppPickerItem
+                label={item.name}
+                onPress={() => handleSelection(item.name)}
+              />
+            )}
+            ItemSeparatorComponent={flatlistSeparator}
+          />
         </View>
       </Modal>
 
       <View>
         {/* Icon when pressed launches the modal */}
-        <Pressable
+        <TouchableOpacity
           onPress={() => {
             setModalVisible(true);
           }}
@@ -64,7 +106,7 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
             size={30}
             color={AppColors.secondaryColor}
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -72,18 +114,16 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
 
 const styles = StyleSheet.create({
   modalView: {
-    marginTop: "50%",
+    marginTop: 150,
     marginHorizontal: "30%",
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
+    backgroundColor: AppColors.accentColor,
+    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.45,
     shadowRadius: 4,
     elevation: 5,
   },

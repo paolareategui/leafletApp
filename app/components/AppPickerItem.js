@@ -5,7 +5,6 @@ import React from "react";
 import { StyleSheet, Pressable, View } from "react-native";
 
 import AppColors from "../config/AppColors";
-import AppIcon from "./AppIcon";
 import AppText from "./AppText";
 
 function AppPickerItem({ iconComponent, onPress, label }) {
@@ -21,8 +20,8 @@ function AppPickerItem({ iconComponent, onPress, label }) {
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomColor: "#CCC",
-    borderBottomWidth: 1,
+    padding: 10,
+    alignItems: "center",
   },
 });
 
