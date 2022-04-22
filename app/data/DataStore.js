@@ -9,7 +9,7 @@ export default class DataStore {
       entryid: 1,
       title: "My succulent is thriving",
       entry:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu enim sodales, venenatis libero sed, aliquet erat. Ut commodo mi sem, eu ullamcorper neque fermentum ut. Pellentesque ullamcorper laoreet ipsum, vel ultrices risus. Mauris eu.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu enim sodales, venenatis libero sed, aliquet erat. Ut commodo mi sem, eu ullamcorper neque fermentum ut.",
       category: "Succulents",
       catid: 1,
       image: require("../assets/succulents1.jpeg"),
