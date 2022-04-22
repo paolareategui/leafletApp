@@ -14,10 +14,8 @@ const entries = (userid) => {
   const thedata = commonData.getEntries(userid);
   //sort data from newest to oldest entries
   const sortData = thedata.sort((a, b) => {
-    console.log(new Date(a.date));
     return new Date(b.date) - new Date(a.date);
   });
-  console.log(sortData);
   return sortData;
 };
 
