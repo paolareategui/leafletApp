@@ -185,4 +185,10 @@ export default class DataStore {
     //Remove object at given index
     this.entries.splice(entryIndex, 1);
   }
+
+  logout() {
+    this.myInstance = null;
+    console.log("Instance of class is:", this.myInstance);
+    console.log("logging out");
+  }
 }

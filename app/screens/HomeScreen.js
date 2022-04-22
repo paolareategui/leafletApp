@@ -8,15 +8,22 @@ import AppText from "../components/AppText";
 import AppColors from "../config/AppColors";
 import DataStore from "../data/DataStore";
 
+//Create an instace of the dataStore
+let commonData = DataStore.getInstance();
+
 //Pass the current user's ID and retrieve their corresponding entries
 const entries = (userid) => {
-  let commonData = DataStore.getInstance();
   const thedata = commonData.getEntries(userid);
   //sort data from newest to oldest entries
   const sortData = thedata.sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
   return sortData;
+};
+
+//Logout
+const logout = () => {
+  commonData.logout();
 };
 
 //Function begins
@@ -67,7 +74,12 @@ function HomeScreen({ navigation, route }) {
 
       {/*Dummy logout button takes user to login screen*/}
       <View style={styles.logoutButtonContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity
+          onPress={() => {
+            logout();
+            navigation.navigate("Login");
+          }}
+        >
           <AppText
             style={{
               textAlign: "center",
@@ -88,7 +100,7 @@ function HomeScreen({ navigation, route }) {
           navigation={navigation}
         />
       </View>
-      {/*Dummy logout button takes user to login screen*/}
+      {/*Logout button makes the dataStore instance null and takes user to login screen*/}
       <View style={{ flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <AppText
