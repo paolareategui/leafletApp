@@ -30,7 +30,7 @@ function CategoryCollectionScreen({ route, navigation }) {
   //Use routed parameter to fetch entries matching the category id
   const entries = getSelectedCategory(route.params.paramCatID);
 
-  console.log(entries);
+  console.log("ENTRIES IN CATEGORY SELECTION", entries);
 
   return (
     //Category collectio view
@@ -40,11 +40,12 @@ function CategoryCollectionScreen({ route, navigation }) {
         keyExtractor={(item) => item.entryid}
         renderItem={({ item }) => (
           <AppCard
-            entryid={item.entryid}
-            title={item.title}
-            image={item.image}
+            date={item.date}
             entry={item.entry}
+            entryid={item.entryid}
+            image={item.image}
             navigation={navigation}
+            title={item.title}
           />
         )}
       />
