@@ -13,6 +13,7 @@ export default class DataStore {
       category: "Succulents",
       catid: 1,
       image: require("../assets/succulents1.jpeg"),
+      date: "Mon Mar 07 2022",
     },
     {
       userid: "user1",
@@ -23,6 +24,7 @@ export default class DataStore {
       category: "Foliage",
       catid: 5,
       image: require("../assets/foliage1.jpeg"),
+      date: "Fri Mar 09 2022",
     },
 
     {
@@ -34,6 +36,7 @@ export default class DataStore {
       category: "Cactus",
       image: require("../assets/cactus1.jpeg"),
       catid: 6,
+      date: "Sat Mar 12 2022",
     },
 
     {
@@ -45,6 +48,7 @@ export default class DataStore {
       category: "Flowers",
       image: require("../assets/flowers1.jpeg"),
       catid: 2,
+      date: "Mon Mar 14 2022",
     },
 
     {
@@ -56,6 +60,7 @@ export default class DataStore {
       category: "Herbs",
       image: require("../assets/herbs1.jpeg"),
       catid: 4,
+      date: "Tue Mar 15 2022",
     },
 
     {
@@ -67,6 +72,7 @@ export default class DataStore {
       category: "Foliage2",
       image: require("../assets/foliage2.jpeg"),
       catid: 5,
+      date: "Fri Mar 18 2022",
     },
 
     {
@@ -78,6 +84,7 @@ export default class DataStore {
       category: "Hanging",
       image: require("../assets/hanging1.jpeg"),
       catid: 3,
+      date: "Wed Mar 23 2022",
     },
 
     {
@@ -89,6 +96,7 @@ export default class DataStore {
       category: "Cactus",
       image: require("../assets/cactus2.jpeg"),
       catid: 6,
+      date: "Sat Mar 26 2022",
     },
 
     {
@@ -100,6 +108,7 @@ export default class DataStore {
       category: "Succulents",
       image: require("../assets/succulents2.jpeg"),
       catid: 1,
+      date: "Mon Apr 18 2022",
     },
 
     //user2 entries
@@ -113,6 +122,7 @@ export default class DataStore {
       category: "Flowers",
       image: require("../assets/flowers2.jpeg"),
       catid: 2,
+      date: "Fri Mar 18 2022",
     },
 
     {
@@ -124,6 +134,7 @@ export default class DataStore {
       category: "Hanging",
       image: require("../assets/hanging2.jpeg"),
       catid: 3,
+      date: "Mon Mar 27 2022",
     },
     {
       userid: "user2",
@@ -134,6 +145,7 @@ export default class DataStore {
       category: "Herbs",
       image: require("../assets/herbs2.jpeg"),
       catid: 4,
+      date: "Tue Mar 01 2022",
     },
   ];
 

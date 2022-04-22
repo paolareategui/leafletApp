@@ -18,7 +18,6 @@ import AppButton from "../components/AppButton";
 import AppColors from "../config/AppColors";
 import DataStore from "../data/DataStore";
 import AppErrorText from "../components/AppErrorText";
-import AppIcon from "../components/AppIcon";
 import AppTextInput from "../components/AppTextInput";
 
 function UpdateScreen({ navigation, route }) {
@@ -60,6 +59,7 @@ function UpdateScreen({ navigation, route }) {
       entry: values.entry,
       userid: user,
       image: values.image,
+      date: route.params.date,
     };
     commonData.addEntry(newEntry);
   };

@@ -6,7 +6,7 @@ import AppColors from "../config/AppColors";
 import AppPostPicker from "./AppPostPicker";
 import AppText from "./AppText";
 
-function AppCard({ category, entry, entryid, image, navigation, title }) {
+function AppCard({ category, date, entry, entryid, image, navigation, title }) {
   console.log(entry);
   return (
     <View style={styles.container}>
@@ -31,6 +31,7 @@ function AppCard({ category, entry, entryid, image, navigation, title }) {
         </View>
         <AppText style={styles.cardEntry}>{entry}</AppText>
         <AppText style={styles.cardCategory}>{category}</AppText>
+        <AppText style={styles.date}>{date}</AppText>
       </View>
     </View>
   );
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
     overflow: "hidden",
+    backgroundColor: "red",
   },
   cardImage: {
     height: 220,
@@ -53,6 +55,9 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 5,
     paddingTop: 2,
+  },
+  date: {
+    alignSelf: "baseline",
   },
   textContainer: {
     paddingHorizontal: 10,

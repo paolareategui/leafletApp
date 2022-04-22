@@ -14,6 +14,7 @@ function MoreInfoScreen({ route, navigation }) {
         title={route.params.paramAll.title}
         entry={route.params.paramAll.entry}
         entryid={route.params.paramAll.entryid}
+        date={route.params.paramAll.date}
         navigation={navigation}
       />
     </View>

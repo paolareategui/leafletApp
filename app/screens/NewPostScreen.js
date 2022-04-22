@@ -16,10 +16,10 @@ import * as Yup from "yup";
 
 import AppButton from "../components/AppButton";
 import AppColors from "../config/AppColors";
-import DataStore from "../data/DataStore";
 import AppErrorText from "../components/AppErrorText";
 import AppIcon from "../components/AppIcon";
 import AppTextInput from "../components/AppTextInput";
+import DataStore from "../data/DataStore";
 
 function NewPostScreen({ navigation }) {
   //Image picker setup
@@ -59,9 +59,17 @@ function NewPostScreen({ navigation }) {
       entry: values.entry,
       userid: user,
       image: values.image,
+      date: getDate(),
     };
     console.log("new entry", newEntry);
     commonData.addEntry(newEntry);
+  };
+
+  //Get the date
+  const getDate = () => {
+    const date = new Date();
+    const stringDate = date.toDateString();
+    return stringDate;
   };
 
   //Yup schema for validation

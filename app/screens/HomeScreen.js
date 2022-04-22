@@ -13,7 +13,11 @@ const entries = (userid) => {
   let commonData = DataStore.getInstance();
   const thedata = commonData.getEntries(userid);
   //sort data from newest to oldest entries
-  const sortData = thedata.sort((a, b) => b.entryid - a.entryid);
+  const sortData = thedata.sort((a, b) => {
+    console.log(new Date(a.date));
+    return new Date(b.date) - new Date(a.date);
+  });
+  console.log(sortData);
   return sortData;
 };
 
@@ -32,7 +36,7 @@ function HomeScreen({ navigation, route }) {
     [userEntries]
   );
 
-  //Workaround: react native does not recognize dynamic image paths from Json file :(
+  //Workaround for user images: react native does not recognize dynamic image paths from Json file :(
   const findTheImage = () => {
     if (route.params.paramID === "user1") {
       return require("../assets/user1.png");
