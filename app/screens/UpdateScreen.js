@@ -90,36 +90,7 @@ function UpdateScreen({ navigation, route }) {
               addEntry(values);
               resetForm();
               setSelectedImage(false);
-              // navigation.pop();
-              // navigation.replace("User home", {
-              //   screen: "Home",
-              //   params: {
-              //     screen: "User profile",
-              //     params: {
-              //       screen: "Post",
-              //       params: {
-              //         paramAll: values,
-              //       },
-              //     },
-              //   },
-              // });
-              // }}
-              // navigation.navigate("User home", {
-              //   screen: "Home",
-              //   params: {
-              //     screen: "User profile",
-              //     params: {
-              //       screen: "Edit post",
-              //       params: {
-              //         screen: "More info",
-              //         params: {
-              //           paramAll: values,
-              //         },
-              //       },
-              //     },
-              //   },
-              // });
-              console.log("VALUES IN UPDATE SCREEN", values);
+              //Navigate to newly updated post
               navigation.replace("Post", {
                 paramAll: values,
               });
