@@ -59,10 +59,12 @@ function UpdateScreen({ navigation, route }) {
       entry: values.entry,
       userid: user,
       image: values.image,
-      date: route.params.date,
+      date: values.date,
     };
     commonData.addEntry(newEntry);
   };
+
+  console.log("ROUTE PARAMS IN UPDATE SCREEN", route.params);
 
   //Yup schema for validation
   const schema = Yup.object().shape({
@@ -85,6 +87,7 @@ function UpdateScreen({ navigation, route }) {
               catid: "",
               image: route.params.paramImage,
               entryid: route.params.paramEntryId,
+              date: route.params.paramEntryDate,
             }}
             onSubmit={(values, { resetForm }) => {
               addEntry(values);

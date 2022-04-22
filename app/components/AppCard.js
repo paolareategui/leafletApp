@@ -7,7 +7,8 @@ import AppPostPicker from "./AppPostPicker";
 import AppText from "./AppText";
 
 function AppCard({ date, entry, entryid, image, navigation, title }) {
-  console.log(entry);
+  console.log("entry in AppCard", entry);
+
   return (
     <View style={styles.container}>
       {/* Show the image whether the image path is a number or an uri */}
@@ -23,6 +24,7 @@ function AppCard({ date, entry, entryid, image, navigation, title }) {
           {/* Display the post picker icon and pass the data */}
           <AppPostPicker
             data={entryid}
+            date={date}
             entry={entry}
             image={image}
             title={title}

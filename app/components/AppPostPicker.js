@@ -14,7 +14,7 @@ import AppIcon from "./AppIcon";
 import AppPickerItem from "./AppPickerItem";
 import DataStore from "../data/DataStore";
 
-function AppPostPicker({ data, navigation, entry, image, title }) {
+function AppPostPicker({ data, date, navigation, entry, image, title }) {
   //Small array of options for flatlist
   const postOptions = [
     { id: 1, name: "Edit" },
@@ -47,6 +47,7 @@ function AppPostPicker({ data, navigation, entry, image, title }) {
       paramEntry: entry,
       paramImage: image,
       paramEntryId: data,
+      paramEntryDate: date,
     });
   };
 
