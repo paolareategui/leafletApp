@@ -2,20 +2,6 @@ import React, { useState } from "react";
 
 import { StyleSheet } from "react-native";
 
-import AppButton from "./app/components/AppButton";
-import AppCard from "./app/components/AppCard";
-import AppCoverImage from "./app/components/AppCoverImage";
-import HomeScreen from "./app/screens/HomeScreen";
-import AppIcon from "./app/components/AppIcon";
-import AppImageCollection from "./app/components/AppImageCollection";
-import AppListItem from "./app/components/AppListItem";
-import AppPickerItem from "./app/components/AppPickerItem";
-import AppText from "./app/components/AppText";
-import AppTextInput from "./app/components/AppTextInput";
-import LoginScreen from "./app/screens/LoginScreen";
-import NewPostScreen from "./app/screens/NewPostScreen";
-import RegisterScreen from "./app/screens/RegisterScreen.js";
-
 import AppColors from "./app/config/AppColors";
 import AppScreen from "./app/components/AppScreen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
