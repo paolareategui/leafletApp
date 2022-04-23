@@ -72,7 +72,7 @@ function HomeScreen({ navigation, route }) {
         <AppText>{route.params.paramEmail}</AppText>
       </View>
 
-      {/*Dummy logout button takes user to login screen*/}
+      {/*Logout button makes the dataStore instance null and takes user to login screen*/}
       <View style={styles.logoutButtonContainer}>
         <TouchableOpacity
           onPress={() => {
@@ -99,20 +99,6 @@ function HomeScreen({ navigation, route }) {
           numCols={3}
           navigation={navigation}
         />
-      </View>
-      {/*Logout button makes the dataStore instance null and takes user to login screen*/}
-      <View style={{ flex: 1 }}>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <AppText
-            style={{
-              textAlign: "center",
-              fontSize: 11,
-              color: "#777",
-            }}
-          >
-            Logout
-          </AppText>
-        </TouchableOpacity>
       </View>
     </View>
   );
