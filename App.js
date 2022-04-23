@@ -1,12 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import {
-  FlatList,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { StyleSheet } from "react-native";
 
 import AppButton from "./app/components/AppButton";
 import AppCard from "./app/components/AppCard";
@@ -16,19 +10,20 @@ import AppIcon from "./app/components/AppIcon";
 import AppImageCollection from "./app/components/AppImageCollection";
 import AppListItem from "./app/components/AppListItem";
 import AppPickerItem from "./app/components/AppPickerItem";
-import AppScreen from "./app/components/AppScreen";
 import AppText from "./app/components/AppText";
 import AppTextInput from "./app/components/AppTextInput";
-import AppColors from "./app/config/AppColors";
 import LoginScreen from "./app/screens/LoginScreen";
 import NewPostScreen from "./app/screens/NewPostScreen";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 
+import AppColors from "./app/config/AppColors";
+import AppScreen from "./app/components/AppScreen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
-
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import LottieView from "lottie-react-native";
 
 export default function App() {
+  //Customize react navigation colours match app colours
   const navTheme = {
     ...DefaultTheme,
     colors: {
@@ -36,11 +31,32 @@ export default function App() {
       background: AppColors.backgroundColor,
     },
   };
+  //Controll when to stop displaying the lottie animation
+  const [loaded, setLoaded] = useState(false);
 
   return (
+    //Display animation first, show authnavigator when animation has finished playing
     <NavigationContainer theme={navTheme}>
       <AppScreen>
-        <AuthNavigator />
+        {loaded ? (
+          <AuthNavigator />
+        ) : (
+          <LottieView
+            source={require("./app/assets/lottie-animation.json")}
+            autoPlay
+            loop={false}
+            style={{
+              width: 200,
+              height: 200,
+              alignSelf: "center",
+              marginTop: 80,
+            }}
+            onAnimationFinish={() => {
+              setLoaded(true);
+              console.log("animation finished");
+            }}
+          />
+        )}
       </AppScreen>
     </NavigationContainer>
   );
