@@ -32,13 +32,13 @@ export default function App() {
     },
   };
   //Controll when to stop displaying the lottie animation
-  const [loaded, setLoaded] = useState(false);
+  const [played, setPlayed] = useState(false);
 
   return (
-    //Display animation first, show authnavigator when animation has finished playing
+    //Display animation first, render authnavigator when animation has finished playing
     <NavigationContainer theme={navTheme}>
       <AppScreen>
-        {loaded ? (
+        {played ? (
           <AuthNavigator />
         ) : (
           <LottieView
@@ -52,7 +52,7 @@ export default function App() {
               marginTop: 80,
             }}
             onAnimationFinish={() => {
-              setLoaded(true);
+              setPlayed(true);
               console.log("animation finished");
             }}
           />
