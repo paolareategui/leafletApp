@@ -138,7 +138,7 @@ export default class DataStore {
     },
     {
       userid: "user2",
-      entryid: 13,
+      entryid: 12,
       title: "The smell is amazing",
       entry:
         "Integer ut urna urna. Vestibulum hendrerit auctor dui, non ultricies nulla feugiat laoreet. Proin venenatis nibh vel quam gravida, a tristique erat commodo. Nam varius sapien non mi hendrerit consectetur at et odio. Duis vel justo quis dui.",
