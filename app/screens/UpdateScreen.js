@@ -210,7 +210,7 @@ function UpdateScreen({ navigation, route }) {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                  <AppButton title="Post" onPress={handleSubmit} />
+                  <AppButton title="Save" onPress={handleSubmit} />
                 </View>
               </>
             )}
