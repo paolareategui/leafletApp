@@ -50,8 +50,7 @@ function NewPostScreen({ navigation }) {
   const addEntry = (values) => {
     let commonData = DataStore.getInstance();
     let user = commonData.getUserID();
-    const entries = commonData.getEntries(user);
-    const entryid = entries.length + 1;
+    const entryid = commonData.entries.length + 1;
     const newEntry = {
       title: values.title,
       catid: values.catid,
