@@ -1,7 +1,5 @@
 import React from "react";
 
-import AppColors from "../config/AppColors";
-
 import { SafeAreaView, StyleSheet, View } from "react-native";
 
 function AppScreen({ children, style }) {

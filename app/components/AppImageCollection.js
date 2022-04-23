@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   FlatList,
   Image,
-  Modal,
-  Pressable,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";

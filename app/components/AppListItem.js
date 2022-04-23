@@ -1,7 +1,3 @@
-//Creates a list item with an icon and text
-//Customise the colour of the icon and the text
-//Specify the size of the icon
-//Background color for the entire list item can be specified
 import React from "react";
 
 import { TouchableOpacity, StyleSheet, View } from "react-native";

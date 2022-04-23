@@ -1,8 +1,6 @@
-//Creates an item for any app picker
-//Accepts iconComponent (AppIcon), onPress and a title
 import React from "react";
 
-import { StyleSheet, TouchableHighlight, Pressable, View } from "react-native";
+import { StyleSheet, TouchableHighlight, View } from "react-native";
 
 import AppColors from "../config/AppColors";
 import AppText from "./AppText";

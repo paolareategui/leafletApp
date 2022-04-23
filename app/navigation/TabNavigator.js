@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import AppColors from "../config/AppColors";
 import AppIcon from "../components/AppIcon";
-import CategoriesScreen from "../screens/CategoriesScreen";
 import HomeNavigator from "./HomeNavigator";
 import NewPostScreen from "../screens/NewPostScreen";
 import CategoriesNavigator from "./CategoriesNavigator";

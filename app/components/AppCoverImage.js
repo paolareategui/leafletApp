@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Image, Text, StyleSheet } from "react-native";
-
-import AppColors from "../config/AppColors";
+import { Image, StyleSheet } from "react-native";
 
 function AppCoverImage({ source }) {
   return <Image style={styles.container} source={source} />;

@@ -25,14 +25,6 @@ const HomeNavigator = () => (
         component={UpdateScreen}
       />
     </Stack.Group>
-
-    {/* <Stack.Group>
-      <Stack.Screen
-        screenOptions={{ title: "Edit your post" }}
-        name="Update"
-        component={UpdateScreen}
-      />
-    </Stack.Group> */}
   </Stack.Navigator>
 );
 

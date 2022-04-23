@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import AppButton from "../components/AppButton";
 import AppImageCollection from "../components/AppImageCollection";
 import AppText from "../components/AppText";
-import AppColors from "../config/AppColors";
 import DataStore from "../data/DataStore";
 
 //Create an instace of the dataStore
