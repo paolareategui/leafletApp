@@ -34,9 +34,14 @@ The following dependencies were installed and used:
 - react-native-screens: ~3.10.1,
 - yup: ^0.32.11
 
+### Test user accounts
+
+- User 1: | username: carmen@mail.com | password: 1234
+- User 2: | username: tc@mail.com | password: 4321
+
 ### Other
 
-A lottie animation will play for 2 seconds when launching the app
+- A lottie animation will play for 2 seconds when launching the app.
 
 ## Authors
 
