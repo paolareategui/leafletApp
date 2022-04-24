@@ -2,6 +2,7 @@ import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import AppDownIcon from "../components/AppDownIcon";
 import HomeScreen from "../screens/HomeScreen";
 import MoreInfoScreen from "../screens/MoreInfoScreen";
 import UpdateScreen from "../screens/UpdateScreen";
@@ -17,13 +18,14 @@ const HomeNavigator = () => (
         options={{ headerShown: false }}
       />
     </Stack.Group>
-    <Stack.Group screenOptions={{ presentation: "modal" }}>
+    <Stack.Group
+      screenOptions={({ navigation }) => ({
+        presentation: "modal",
+        headerLeft: () => <AppDownIcon onPress={navigation.goBack} />,
+      })}
+    >
       <Stack.Screen name="Post" component={MoreInfoScreen} />
-      <Stack.Screen
-        screenOptions={{ title: "Edit your post" }}
-        name="Edit post"
-        component={UpdateScreen}
-      />
+      <Stack.Screen name="Edit post" component={UpdateScreen} />
     </Stack.Group>
   </Stack.Navigator>
 );

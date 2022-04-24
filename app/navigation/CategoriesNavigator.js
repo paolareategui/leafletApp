@@ -2,6 +2,7 @@ import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import AppDownIcon from "../components/AppDownIcon";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryCollectionScreen from "../screens/CategoryCollectionScreen";
 import UpdateScreen from "../screens/UpdateScreen";
@@ -19,7 +20,12 @@ const CategoriesNavigator = () => (
       />
     </Stack.Group>
 
-    <Stack.Group screenOptions={{ presentation: "modal" }}>
+    <Stack.Group
+      screenOptions={({ navigation }) => ({
+        presentation: "modal",
+        headerLeft: () => <AppDownIcon onPress={navigation.goBack} />,
+      })}
+    >
       <Stack.Screen
         name="Category Collection"
         component={CategoryCollectionScreen}
