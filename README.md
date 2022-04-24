@@ -4,10 +4,10 @@ Leaflet is a short-form journal app for plant parents developed
 using React Native and Expo.
 
 Leaflet allows the user to save journal entries about their
-beloved plant babies. Each entry consists of one image
-and up to 240 characters of text. Additionally, users of
-leaflet app can edit and delete their entries. In order
-to use the app, leaflet requires an account.
+beloved plant babies. Each entry can record one image, a plant
+category and up to 240 characters of text. Additionally, leaflet
+users can edit and delete their entries. In order to use the app,
+leaflet requires an account.
 
 This is a project for COMP3130 Mobile Application Developement
 at Macquarie University.
@@ -41,11 +41,10 @@ The following dependencies were installed and used:
 
 ### Other
 
-- A lottie animation will play for 2 seconds when launching the app.
-
-## Authors
-
-- [@paolareategui](https://github.com/paolareategui)
+- A lottie animation will play for 2 seconds when launching the app. The
+  user is taken to the registration screen immediately after.
+- Entry images can be added by pressing on the camera icon.
+- When updating an entry, the image can be changed by pressing on it.
 
 ## Features
 
@@ -81,3 +80,7 @@ Start the server
 ```bash
   npm start
 ```
+
+## Authors
+
+- [@paolareategui](https://github.com/paolareategui)
