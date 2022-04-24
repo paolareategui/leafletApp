@@ -2,7 +2,7 @@
     {
     "userid": "user1",
     "username": "Carmen Carrera",
-    "email": "c@m.com",
+    "email": "carmen@mail.com",
     "password": "1234",
     "image": "../assets/user1.png"
   },
@@ -10,7 +10,7 @@
     "userid": "user2",
     "username": "Tom Craig",
     "email": "tc@mail.com",
-    "password": "1234",
+    "password": "4321",
     "image": "../assets/user2.png"
   }
 ]
