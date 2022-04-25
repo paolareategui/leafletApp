@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: AppColors.errorColor,
     paddingVertical: 5,
+    fontWeight: "600",
   },
 });
 
