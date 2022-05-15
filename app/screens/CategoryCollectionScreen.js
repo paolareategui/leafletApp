@@ -3,6 +3,7 @@ import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
 import AppCard from "../components/AppCard";
+import AppText from "../components/AppText";
 import DataStore from "../data/DataStore";
 
 //Get the current user
@@ -48,6 +49,11 @@ function CategoryCollectionScreen({ route, navigation }) {
             title={item.title}
           />
         )}
+        ListEmptyComponent={
+          <View style={{ alignItems: "center" }}>
+            <AppText>Oops! You have 0 entries in this category.</AppText>
+          </View>
+        }
       />
     </View>
   );
