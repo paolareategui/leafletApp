@@ -22,8 +22,8 @@ function AppImageCollection({ data, navigation, numCols }) {
         ListEmptyComponent={
           //Display this message if user images are not available
           <AppText style={{ textAlign: "center", padding: 20 }}>
-            Your journal is empty. Please use the New post button to start
-            adding entries.
+            Your journal is empty. Please use the New post tab to start adding
+            entries.
           </AppText>
         }
         renderItem={({ item }) => (
