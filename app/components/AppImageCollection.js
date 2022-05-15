@@ -21,8 +21,9 @@ function AppImageCollection({ data, navigation, numCols }) {
         keyExtractor={(item) => item.entryid}
         ListEmptyComponent={
           //Display this message if user images are not available
-          <AppText style={{ textAlign: "center" }}>
-            You haven't posted anything yet
+          <AppText style={{ textAlign: "center", padding: 20 }}>
+            Your journal is empty. Please use the New post button to start
+            adding entries.
           </AppText>
         }
         renderItem={({ item }) => (
