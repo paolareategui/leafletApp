@@ -75,7 +75,7 @@ function NewPostScreen({ navigation }) {
   const schema = Yup.object().shape({
     title: Yup.string().required().label("Title"),
     entry: Yup.string().required().max(240).label("Entry"),
-    catid: Yup.string().required().min(1).label("Category"),
+    catid: Yup.string().nullable().required().label("Category"),
   });
 
   return (
