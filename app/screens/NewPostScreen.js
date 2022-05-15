@@ -39,6 +39,7 @@ function NewPostScreen({ navigation }) {
     //If image is selected handle it
     if (!result.cancelled) {
       handleChange(result.uri);
+      setSelectedImage(true);
     }
   };
   //Image picker setup ends
@@ -116,7 +117,7 @@ function NewPostScreen({ navigation }) {
                 <TouchableOpacity
                   onPress={() => {
                     pickImage(handleChange("image"));
-                    setSelectedImage(true);
+                    // setSelectedImage(true);
                   }}
                 >
                   {selectedImage ? (
