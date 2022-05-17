@@ -6,7 +6,7 @@ import AppColors from "../config/AppColors";
 import AppPostPicker from "./AppPostPicker";
 import AppText from "./AppText";
 
-function AppCard({ date, entry, entryid, image, navigation, title }) {
+function AppCard({ catid, date, entry, entryid, image, navigation, title }) {
   console.log("entry in AppCard", entry);
 
   return (
@@ -23,6 +23,7 @@ function AppCard({ date, entry, entryid, image, navigation, title }) {
 
           {/* Display the post picker icon and pass the data */}
           <AppPostPicker
+            catid={catid}
             data={entryid}
             date={date}
             entry={entry}

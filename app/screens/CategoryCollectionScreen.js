@@ -41,6 +41,7 @@ function CategoryCollectionScreen({ route, navigation }) {
         keyExtractor={(item) => item.entryid}
         renderItem={({ item }) => (
           <AppCard
+            catid={item.catid}
             date={item.date}
             entry={item.entry}
             entryid={item.entryid}

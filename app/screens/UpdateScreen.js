@@ -84,7 +84,7 @@ function UpdateScreen({ navigation, route }) {
             initialValues={{
               title: route.params.paramTitle,
               entry: route.params.paramEntry,
-              catid: "",
+              catid: route.params.paramCatId,
               image: route.params.paramImage,
               entryid: route.params.paramEntryId,
               date: route.params.paramEntryDate,
