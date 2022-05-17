@@ -94,10 +94,14 @@ function NewPostScreen({ navigation }) {
               catid: "",
             }}
             onSubmit={(values, { resetForm }) => {
-              addEntry(values);
-              resetForm();
-              setSelectedImage(false);
-              navigation.navigate("Home");
+              if (selectedImage) {
+                addEntry(values);
+                resetForm();
+                setSelectedImage(false);
+                navigation.navigate("Home");
+              } else if (!selectedImage) {
+                alert("Don't forget to add an image!");
+              }
             }}
             validationSchema={schema}
           >
