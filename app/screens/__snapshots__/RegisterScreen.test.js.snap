@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Elements in RegisterScreen render properly <AppButton /> renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "opacity": 1,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 8,
+          "padding": 15,
+          "width": "70%",
+        },
+        Object {
+          "backgroundColor": "#16182B",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 17,
+          "fontWeight": "600",
+          "textAlign": "center",
+          "textTransform": "uppercase",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Elements in RegisterScreen render properly <AppTextInput /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginTop": 30,
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    placeholderTextColor="#333"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "#fff",
+        "borderColor": "#16182B",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
+        "padding": 15,
+        "width": "100%",
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+</View>
+`;
