@@ -23,21 +23,33 @@ import AppTextInput from "../components/AppTextInput";
 function UpdateScreen({ navigation, route }) {
   //Image picker setup
   let pickImage = async (handleChange) => {
-    //Set up phone access permission
-    let permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (permissionResult.granted === false) {
-      alert("Permission to access camera roll is required!");
-      return;
-    }
-
-    let result = await ImagePicker.launchImageLibraryAsync();
-    console.log(result);
-
-    //If image is selected handle it
-    if (!result.cancelled) {
-      handleChange(result.uri);
+    try {
+      let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (permissionResult.granted === false) {
+        alert("Permission to access camera roll is required!");
+        return;
+      }
+  
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      console.log("Image picker result:", result);
+  
+      if (!result.canceled) {
+        handleChange(result.assets[0].uri);
+        setSelectedImage(true);
+      }
+    } catch (error) {
+      console.error("Error in pickImage:", error);
+      if (error.message) {
+        alert(`Error picking image: ${error.message}`);
+      } else {
+        alert("An unknown error occurred while picking the image.");
+      }
     }
   };
   //Image picker setup ends
