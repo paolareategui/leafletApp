@@ -1,11 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { Image } from "react-native";
 import AppButton from "../components/AppButton";
 import AppCoverImage from "../components/AppCoverImage";
 import AppTextInput from "../components/AppTextInput";
 import RegisterScreen from "./RegisterScreen";
-import react from "react";
 
 describe("Elements in RegisterScreen render properly", () => {
   test("The correct Cover image is displayed", () => {
